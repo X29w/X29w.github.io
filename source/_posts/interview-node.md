@@ -1,6 +1,7 @@
 ---
 title: interview-node
 date: 2024-06-10 23:12:15
+cover: https://th.bing.com/th/id/OIP.aXM-E8NR8K2Icz-ro-EoygHaEK?w=256&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7
 tags:
 ---
 # Node
