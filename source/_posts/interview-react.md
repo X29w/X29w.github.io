@@ -1,6 +1,7 @@
 ---
 title: interview-react
 date: 2024-05-30 22:59:54
+cover: https://th.bing.com/th/id/OIP.EntHChgUyirgbZ9A3zTxkAHaFj?w=198&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7
 tags:
 ---
 

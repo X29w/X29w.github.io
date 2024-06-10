@@ -1,6 +1,7 @@
 ---
 title: interview-mobx
 date: 2024-06-04 14:32:54
+cover: https://th.bing.com/th/id/OIP.oYwjm9O2yAFPUyFTX9gdRwHaCn?w=311&h=124&c=7&r=0&o=5&dpr=1.3&pid=1.7
 tags:
 ---
 # Mobx

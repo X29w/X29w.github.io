@@ -1,6 +1,7 @@
 ---
 title: interview-browser-principles
 date: 2024-05-30 23:01:58
+cover: https://th.bing.com/th/id/OIP.iudZ1yP32cFWVCR9VGxbrQHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7
 tags:
 ---
 

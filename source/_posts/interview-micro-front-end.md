@@ -1,6 +1,7 @@
 ---
 title: interview-micro-front-end
 date: 2024-05-30 23:02:59
+cover: https://th.bing.com/th/id/OIP.9l6G_aOy7FojOtbwHddPJgHaEL?w=286&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7
 tags:
 ---
 

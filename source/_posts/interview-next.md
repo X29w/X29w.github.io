@@ -1,6 +1,7 @@
 ---
 title: interview-next
 date: 2024-05-30 22:58:58
+cover: https://www.bing.com/images/search?view=detailV2&ccid=htQ%2f%2fm0E&id=EABC24F957D182419C92EFA9C207527D8903A27A&thid=OIP.htQ__m0E2P0XuxSSQelBcQHaDZ&mediaurl=https%3a%2f%2fmobisoftinfotech.com%2fresources%2fwp-content%2fuploads%2f2022%2f04%2fnext-JS-framework.png&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.86d43ffe6d04d8fd17bb149241e94171%3frik%3deqIDiX1SB8Kp7w%26pid%3dImgRaw%26r%3d0&exph=392&expw=855&q=next+js&simid=608046724250930748&FORM=IRPRST&ck=6C74777B8A24BB9C48640147249E4307&selectedIndex=1&itb=0
 tags:
 ---
 

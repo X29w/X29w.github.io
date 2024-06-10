@@ -1,6 +1,7 @@
 ---
 title: interview-css
 date: 2024-05-30 22:57:57
+cover: https://www.bing.com/images/search?view=detailV2&ccid=lxU5oKoy&id=E1168055DEEFB4A47DBBD91FBA7F519E341F73F1&thid=OIP.lxU5oKoy-oTFJR8RVVq7CQHaEW&mediaurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.971539a0aa32fa84c5251f11555abb09%3frik%3d8XMfNJ5Rf7of2Q%26riu%3dhttp%253a%252f%252fwww.bugtreat.com%252fblog%252fwp-content%252fuploads%252f2012%252f07%252fcss-logo.jpg%26ehk%3dRN2KV5CIEchJ2z00YEqF9RGtzgxp6MoVngFLA02X1Uk%253d%26risl%3d%26pid%3dImgRaw%26r%3d0&exph=1229&expw=2090&q=css&simid=608034535142341881&FORM=IRPRST&ck=0CC3A29E0E297034AFCE1115E2DD8947&selectedIndex=3&itb=0
 tags:
 ---
 

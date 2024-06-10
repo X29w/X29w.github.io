@@ -1,6 +1,7 @@
 ---
 title: interview-computer-network
 date: 2024-05-30 23:00:54
+cover: https://www.bing.com/images/search?view=detailV2&ccid=RdsLGwku&id=6580A17BF12E7E08C7CF87A48F231D331BA901F4&thid=OIP.RdsLGwkuRCogMyOqqBPCKgAAAA&mediaurl=https%3a%2f%2fx0.ifengimg.com%2fres%2f2021%2f7315633B4CEF3AE74B05A420DB4F1B8F3F5E5EB1_size28_w424_h300.jpeg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.45db0b1b092e442a203323aaa813c22a%3frik%3d9AGpGzMdI4%252bkhw%26pid%3dImgRaw%26r%3d0&exph=300&expw=424&q=%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%bd%91%e7%bb%9c&simid=608019313781248272&FORM=IRPRST&ck=86E5D5AA5BCE384B06C52C9EF5EACC6E&selectedIndex=5&itb=0
 tags:
 ---
 

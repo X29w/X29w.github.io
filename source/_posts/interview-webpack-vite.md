@@ -1,6 +1,7 @@
 ---
 title: interview-webpack-vite
 date: 2024-06-05 23:09:16
+cover: https://th.bing.com/th/id/OIP.2n_MKzY3ViTeRLlPY2o-xgHaDJ?w=302&h=148&c=7&r=0&o=5&dpr=1.3&pid=1.7
 tags:
 ---
 

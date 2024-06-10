@@ -1,6 +1,7 @@
 ---
 title: interview-typescript
 date: 2024-06-04 14:31:14
+cover: https://th.bing.com/th/id/OIP.yZTi1-PTpmVRWfdIZ0Q9nAHaD4?w=330&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7
 tags:
 ---
 # TypeScript
