@@ -32,7 +32,7 @@ tags:
 
 ## 什么是Node.js的包管理器npm？它的功能有哪些？
 
-**npm(Node Package Manager)**是Node.js的默认包管理器，它让开发者能够方便地安装、共享和管理Node.js的模块（包）。npm提供了庞大的公共包库，支持包的版本控制、依赖管理、脚本执行等功能，极大促进了Node.js生态的发展和应用的快速迭代。
+**npm(Node Package Manager)** 是Node.js的默认包管理器，它让开发者能够方便地安装、共享和管理Node.js的模块（包）。npm提供了庞大的公共包库，支持包的版本控制、依赖管理、脚本执行等功能，极大促进了Node.js生态的发展和应用的快速迭代。
 
 ## 解释Node.js中的Cluster模块及其在生产环境的应用。
 
