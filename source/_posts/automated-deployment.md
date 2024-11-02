@@ -577,10 +577,32 @@ tar -zcvf dist.tar ./dist
 ### 连接SSH服务器
 系统配置已经设置过ssh相关配置再操作下面，如未设置，请往上翻 `Publish Over SSH`
 
+![img](/images/automated-deployment/49.png)
+![img](/images/automated-deployment/50.png)
+
+字段说明：
+`Source files`：准备发送的文件，该文件是相对于这个项目的workspace目录。例如要发送`/docker/jenkins_home/workspace/gitlab_web/dist.tar`到目标目录，则设置Source files为dist.tar
+`Remove prefix`：目标文件前缀添加，例如要操作src下面的某个文件，就设置成src,本案例是跟目录，无需设置
+`Remote directory`：目标目录，本案例要复制到dev环境下的dist文件，`/docker/html/dev`
+`Exec command`：最后执行的命令，可在这里进行解压，删除，复制等操作
 
 
+执行构建后，对应目录已经有了一个dist.tar文件
+
+![img](/images/automated-deployment/51.png)
 
 
+这样肯定是不行的，还需要删除原有dist文件夹，解压dist.tar,再删除dist.tar,最终命令如下
+修改刚才配置的ssh最下方有个Exec command
+
+``` cmd
+cd /docker/html/dev
+rm  -rf   dist/
+tar zxvf dist.tar
+rm dist.tar
+```
+至此，shell命令执行结束，目前的效果是:
+gitlab 项目dev分支git提交后，触发jenkins自动构建，自动构建会先在服务器从gitlab的dev分支拉取最新代码，执行build打包后生成dist.tar文件，然后通过ssh将对应dist.tar发送到对应dev环境的项目目录解压dist.tar并更新对应文件，实现自动更新dev环境
 
 
 
