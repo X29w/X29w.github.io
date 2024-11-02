@@ -427,12 +427,14 @@ cat /docker/jenkins_home/secrets/initialAdminPassword
 
 ![img](/images/automated-deployment/18.png)
 
-### 添加github账号密码
+### 添加 github 账号密码
+
 ![img](/images/automated-deployment/19.png)
 
+## 创建 job
 
-## 创建job
 ### 源码管理
+
 ![img](/images/automated-deployment/20.png)
 ![img](/images/automated-deployment/21.png)
 ![img](/images/automated-deployment/22.png)
@@ -447,5 +449,140 @@ cat /docker/jenkins_home/secrets/initialAdminPassword
 
 ![img](/images/automated-deployment/26.png)
 
+## Github WebHooks 配置
 
-## Gitlab WebHooks配置
+### webhooks 配置
+
+![img](/images/automated-deployment/27.png)
+
+![img](/images/automated-deployment/28.png)
+
+### 创建一个 Personal access tokens
+
+![img](/images/automated-deployment/29.png)
+![img](/images/automated-deployment/30.png)
+![img](/images/automated-deployment/31.png)
+
+### 配置 jenkins
+
+进入一个 job
+
+![img](/images/automated-deployment/32.png)
+
+![img](/images/automated-deployment/33.png)
+
+![img](/images/automated-deployment/34.png)
+
+![img](/images/automated-deployment/35.png)
+
+![img](/images/automated-deployment/36.png)
+
+![img](/images/automated-deployment/37.png)
+
+![img](/images/automated-deployment/38.png)
+(图片说明：描述就是取一个名称)
+
+![img](/images/automated-deployment/39.png)
+
+## Build Steps
+
+在/docker/jenkins_home/workspace/gitlab_web,每次构建对应代码都会同步更新，由于代码没有在 git 上传 node_moudle 文件夹，所以后续需要在服务器重新安装 node_moudle
+![img](/images/automated-deployment/40.png)
+
+### Execute NodeJS script
+
+这里选的 node 是上面配置的
+![img](/images/automated-deployment/41.png)
+![img](/images/automated-deployment/42.png)
+
+点击应用后保存，然后点击立即构建，此次时间会`长一点`，此时构建会去自动安装对应的 nodejs 安装包到 jenkins 目录并配置好环境变量，注意尽量与`本地开发环境的node版本一致`，为了保持环境同步，等待构建好后再执行下一步
+
+![img](/images/automated-deployment/43.png)
+
+应用保存并构建成功后，可以进入下一步
+
+### Shell 命令
+
+![img](/images/automated-deployment/44.png)
+
+在 shell 命令这块有的执行 node -v 都报错，此时请检查环境变量是否与服务器的环境变量有差异，执行`echo $PATH`
+第一行代码一般要添加`#!/bin/bash`
+如果环境变量有问题可能要在第二行执行刷新环境变量命令
+
+```cmd
+source ~/.bash_profile
+source /etc/profile
+```
+
+上面哪个有效果用哪个
+然后执行对应命令，验证环境可用
+
+![img](/images/automated-deployment/45.png)
+
+```cmd
+#!/bin/bash
+
+node -v
+npm -v
+echo $PATH
+```
+
+保存之后回到桌面在此构建一次
+上述命令如成功执行，进行下一步
+
+### 安装node_moule并build打包
+
+:::warning
+先自己本地build一下，看看哪里有问题
+:::
+
+修改job的shell配置
+``` cmd
+node -v
+npm -v
+
+npm i 
+npm run build:dev
+```
+
+![img](/images/automated-deployment/46.png)
+
+
+此时服务器代码出现dist文件夹
+![img](/images/automated-deployment/47.png)
+目录在/docker/jenkins_home/workspace/github_test_web
+
+
+### 代码自动部署到对应环境项目目录
+
+同一服务器可以用`cp`命令，可以参考linux cp命令
+
+此处为另一种方式：压缩包ssh传输，因为使用cp命令到/docker/html/dev目录报错了，遂采用第二种方式
+
+``` cmd
+#!/bin/bash
+
+node -v 
+npm -v 
+npm i
+npm run build:dev
+rm -rf dist.tar
+tar -zcvf dist.tar ./dist
+```
+
+构建成功后多了个dist.tar文件
+![img](/images/automated-deployment/48.png)
+
+
+### 连接SSH服务器
+系统配置已经设置过ssh相关配置再操作下面，如未设置，请往上翻 `Publish Over SSH`
+
+
+
+
+
+
+
+
+
+
