@@ -2,6 +2,12 @@
 title: 前端自动化部署
 date: 2024-10-20 12:18:31
 tags:
+  - docker
+  - nginx
+  - jenkins
+  - linux
+categories:
+  - Academic
 ---
 
 所谓自动化部署就是当代码触发提交的时候自动部署到服务器上

@@ -2,6 +2,11 @@
 title: web多环境配置
 date: 2024-10-20 10:15:18
 tags:
+  - web
+  - React
+  - Vite
+categories:
+  - Skill
 ---
 
 ## web 端多环境配置
