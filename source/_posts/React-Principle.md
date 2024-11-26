@@ -194,7 +194,7 @@ export default [
     input: `${pkgPath}/${module}`,
     output: {
       file: `${pkgDistPath}/index.js`,
-      name: "index.js",
+      name: "react",
       format: "umd",
     },
     plugins: [
@@ -739,3 +739,480 @@ jsx("div", {
 这就是为什么 `React` 需要维护两个版本的 `JSX` 转换函数，它们服务于不同的目的：
 `jsx`: 注重性能和包体积
 `jsxDev`: 注重开发体验和调试能力
+
+## React reconciler
+
+`React reconciler` 主要是实现了 `React` 的核心算法，包括调和、渲染、更新等。
+
+### 更改 packages/react-reconciler/package.json 文件
+
+```json
+{
+  "name": "react-reconciler",
+  "version": "1.0.0",
+  "description": "react-reconciler",
+  "module": "index.ts",
+  "dependencies": {
+    "shared": "workspace: *"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "x29",
+  "license": "ISC"
+}
+```
+
+### 在 packages/react/src/currentBatchConfig.ts 文件中，我们声明了 `currentBatchConfig` 类型。
+
+> currentBatchConfig.ts - React 批处理配置文件
+
+作用：
+
+- 存储当前 React 批量更新的配置信息
+- 主要用于 Transition 相关的功能
+- 在并发渲染中控制更新的优先级
+
+```typescript
+/**
+ * React 当前批处理配置对象
+ *
+ * 用途：
+ * 1. 在组件更新时标记更新的类型
+ * 2. 帮助 React 区分普通更新和 Transition 更新
+ * 3. 影响更新的优先级和调度方式
+ *
+ * @type {React.BatchConfig}
+ *
+ * @example
+ * // React 内部使用示例
+ * function scheduleUpdate(fiber, update) {
+ *   const transition = ReactCurrentBatchConfig.transition;
+ *   if (transition !== null) {
+ *     // 这是一个 Transition 更新，使用较低的优先级
+ *     scheduleTransitionUpdate(fiber, update);
+ *   } else {
+ *     // 这是一个普通更新，使用正常优先级
+ *     scheduleRegularUpdate(fiber, update);
+ *   }
+ * }
+ */
+const ReactCurrentBatchConfig: React.BatchConfig = {
+  transition: null,
+};
+
+export default ReactCurrentBatchConfig;
+```
+
+> 实际应用场景：
+
+1.  useTransition Hook:
+
+```tsx
+function App() {
+  const [isPending, startTransition] = useTransition();
+  return (
+    <button
+      onClick={() => {
+        startTransition(() => {
+          // 这里的更新会被标记为 Transition
+          setLargeList(generateLargeList());
+        });
+      }}
+    >
+      Update List
+    </button>
+  );
+}
+```
+
+2.  并发特性：
+
+- 允许 React 中断渲染以处理更高优先级的更新
+- 帮助实现更流畅的用户体验
+- 支持可中断的渲染过程
+
+### 在 packages/react-reconciler/src/fiberFlags.ts 文件中
+
+> fiberFlags.ts - React Fiber 节点的副作用（side-effects）标记定义
+
+作用：
+
+- 定义所有可能的 Fiber 节点副作用类型
+- 使用二进制位标记实现高效的副作用追踪
+- 通过位运算组合多个副作用
+
+```typescript
+/**
+
+
+/**
+ * Flags 类型定义
+ * 用于在 TypeScript 中标识副作用标记的类型
+ */
+export type Flags = number;
+
+/**
+ * 无副作用标记
+ * 表示节点不需要进行任何操作
+ * 二进制：0000000
+ */
+export const NoFlags = 0b0000000;
+
+/**
+ * 插入/移动标记
+ * 表示节点需要插入到 DOM 中或在 DOM 中移动位置
+ * 二进制：0000001
+ */
+export const Placement = 0b0000001;
+
+/**
+ * 更新标记
+ * 表示节点的属性或内容需要更新
+ * 二进制：0000010
+ */
+export const Update = 0b0000010;
+
+/**
+ * 子节点删除标记
+ * 表示需要删除子节点
+ * 二进制：0000100
+ */
+export const ChildDeletion = 0b0000100;
+
+/**
+ * 被动效果标记（如 useEffect）
+ * 表示节点包含需要在提交阶段后异步执行的副作用
+ * 二进制：0001000
+ */
+export const PassiveEffect = 0b0001000;
+
+/**
+ * Ref 更新标记
+ * 表示节点的 ref 需要更新
+ * 二进制：0010000
+ */
+export const Ref = 0b0010000;
+
+/**
+ * 可见性变更标记
+ * 表示节点的显示/隐藏状态需要更新
+ * 二进制：0100000
+ */
+export const Visibility = 0b0100000;
+
+/**
+ * 已捕获标记
+ * 表示错误已经被捕获
+ * 二进制：1000000
+ */
+export const DidCapture = 0b1000000;
+
+/**
+ * 应该捕获标记
+ * 表示这个节点应该尝试捕获错误
+ * 二进制：01000000000
+ */
+export const ShouldCapture = 0b01000000000;
+
+/**
+ * 突变阶段的标记集合
+ * 包含了在 DOM 突变阶段需要处理的所有副作用
+ * 通过位运算组合多个标记
+ *
+ * @example
+ * if (fiber.flags & MutationMask) {
+ *   // 需要在突变阶段处理这个节点
+ * }
+ */
+export const MutationMask =
+  Placement | Update | ChildDeletion | Ref | Visibility;
+
+/**
+ * 布局阶段的标记集合
+ * 包含了在 DOM 布局阶段需要处理的所有副作用
+ * 目前只包含 Ref 的更新
+ */
+export const LayoutMask = Ref;
+
+/**
+ * 被动效果的标记集合
+ * 包含了需要异步处理的副作用
+ * 主要用于 useEffect 的处理
+ */
+export const PassiveMask = PassiveEffect | ChildDeletion;
+```
+
+使用示例：
+
+```typescript
+// 添加副作用标记
+fiber.flags |= Update;
+
+// 检查是否包含某个副作用
+if (fiber.flags & Placement) {
+  // 需要插入或移动节点
+}
+
+// 在不同阶段检查相关副作用
+if (fiber.flags & MutationMask) {
+  // 处理 DOM 突变相关的副作用
+}
+
+if (fiber.flags & PassiveMask) {
+  // 处理 useEffect 相关的副作用
+}
+```
+
+### 在 packages/react-reconciler/src/workTags.ts 文件中
+
+> workTags.ts - React Fiber 节点类型定义文件
+
+作用：
+
+- 定义所有可能的 Fiber 节点类型
+- 用于在 Fiber 树中标识不同类型的节点
+- 帮助 React 在协调过程中正确处理不同类型的组件
+
+```typescript
+/**
+ * 函数组件标识
+ * 用于标识函数式组件创建的 Fiber 节点
+ * @example
+ * function App() { return <div>Hello</div> }
+ * // App 组件对应的 Fiber 节点的 tag 值为 FunctionComponent (0)
+ */
+export const FunctionComponent: React.FunctionComponent = 0;
+
+/**
+ * 根节点标识
+ * 用于标识应用的根节点（Root）
+ * @example
+ * ReactDOM.render(<App />, container)
+ * // container 对应的 Fiber 节点的 tag 值为 HostRoot (3)
+ */
+export const HostRoot: React.HostRoot = 3;
+
+/**
+ * 原生 DOM 元素标识
+ * 用于标识普通 HTML 元素的 Fiber 节点
+ * @example
+ * <div>Hello</div>
+ * // div 对应的 Fiber 节点的 tag 值为 HostComponent (5)
+ */
+export const HostComponent: React.HostComponent = 5;
+
+/**
+ * 文本节点标识
+ * 用于标识文本内容的 Fiber 节点
+ * @example
+ * <div>Hello World</div>
+ * // "Hello World" 对应的 Fiber 节点的 tag 值为 HostText (6)
+ */
+export const HostText: React.HostText = 6;
+
+/**
+ * Fragment 标识
+ * 用于标识 React.Fragment 的 Fiber 节点
+ * @example
+ * <React.Fragment>
+ *   <div>Item 1</div>
+ *   <div>Item 2</div>
+ * </React.Fragment>
+ * // Fragment 对应的 Fiber 节点的 tag 值为 Fragment (7)
+ */
+export const Fragment: React.Fragment = 7;
+
+/**
+ * Context Provider 标识
+ * 用于标识 Context.Provider 的 Fiber 节点
+ * @example
+ * <MyContext.Provider value={value}>
+ *   {children}
+ * </MyContext.Provider>
+ * // Provider 对应的 Fiber 节点的 tag 值为 ContextProvider (11)
+ */
+export const ContextProvider: React.ContextProvider = 11;
+
+/**
+ * Suspense 组件标识
+ * 用于标识 Suspense 组件的 Fiber 节点
+ * @example
+ * <Suspense fallback={<Loading />}>
+ *   <SomeComponent />
+ * </Suspense>
+ * // Suspense 对应的 Fiber 节点的 tag 值为 SuspenseComponent (13)
+ */
+export const SuspenseComponent: React.SuspenseComponent = 13;
+
+/**
+ * Offscreen 组件标识
+ * 用于标识 Offscreen 组件的 Fiber 节点
+ * 通常用于实现一些性能优化相关的功能
+ * @example
+ * // React 内部使用，用于优化渲染性能
+ * // 对应的 Fiber 节点的 tag 值为 OffscreenComponent (14)
+ */
+export const OffscreenComponent: React.OffscreenComponent = 14;
+```
+
+> 使用示例：
+
+```typescript
+function processFiber(fiber: FiberNode) {
+  switch (fiber.tag) {
+    case FunctionComponent:
+      // 处理函数组件
+      updateFunctionComponent(fiber);
+      break;
+    case HostComponent:
+      // 处理 DOM 元素
+      updateHostComponent(fiber);
+      break;
+    case HostText:
+      // 处理文本节点
+      updateTextContent(fiber);
+      break;
+    // ... 处理其他类型
+  }
+}
+```
+
+### 在根目录的 typing 中声明全局的类型定义文件
+
+#### React.d.ts
+
+```typescript
+declare module React {
+  /**
+   * React 配置对象的类型定义
+   * @interface JsxConfig
+   * @property {Key} [key] - 可选的 key 属性，用于 React 的 diff 算法
+   * @property {Ref} [ref] - 可选的 ref 属性，用于获取 DOM 或组件实例
+   * @property {any} [key: string] - 允许任意其他字符串键的属性
+   */
+  export interface JsxConfig {
+    [key: string]: any;
+    key?: Key;
+    ref?: Ref;
+  }
+
+  /**
+   * BatchConfig 接口定义
+   *
+   * @interface BatchConfig
+   * @property {number | null} transition - Transition 的标识符
+   *
+   * 说明：
+   * 1. 当 transition 为 null 时，表示普通更新
+   * 2. 当 transition 为数字时，表示这是一个 Transition 更新
+   *
+   * @example
+   * // 在 useTransition 中的使用
+   * const [isPending, startTransition] = useTransition();
+   * startTransition(() => {
+   *   // 在这个回调中，ReactCurrentBatchConfig.transition 会被设置为一个数字
+   *   setCount(count + 1);
+   * });
+   */
+  export interface BatchConfig {
+    transition: number | null;
+  }
+
+  /**
+   * 函数组件标识
+   * 用于标识函数式组件创建的 Fiber 节点
+   * @example
+   * function App() { return <div>Hello</div> }
+   * // App 组件对应的 Fiber 节点的 tag 值为 FunctionComponent (0)
+   */
+  export type FunctionComponent = 0;
+
+  /**
+   * 根节点标识
+   * 用于标识应用的根节点（Root）
+   * @example
+   * ReactDOM.render(<App />, container)
+   * // container 对应的 Fiber 节点的 tag 值为 HostRoot (3)
+   */
+  export type HostRoot = 3;
+
+  /**
+   * 原生 DOM 元素标识
+   * 用于标识普通 HTML 元素的 Fiber 节点
+   * @example
+   * <div>Hello</div>
+   * // div 对应的 Fiber 节点的 tag 值为 HostComponent (5)
+   */
+  export type HostComponent = 5;
+
+  /**
+   * 文本节点标识
+   * 用于标识文本内容的 Fiber 节点
+   * @example
+   * <div>Hello World</div>
+   * // "Hello World" 对应的 Fiber 节点的 tag 值为 HostText (6)
+   */
+  export type HostText = 6;
+
+  /**
+   * Fragment 标识
+   * 用于标识 React.Fragment 的 Fiber 节点
+   * @example
+   * <React.Fragment>
+   *   <div>Item 1</div>
+   *   <div>Item 2</div>
+   * </React.Fragment>
+   * // Fragment 对应的 Fiber 节点的 tag 值为 Fragment (7)
+   */
+  export type Fragment = 7;
+
+  /**
+   * Context Provider 标识
+   * 用于标识 Context.Provider 的 Fiber 节点
+   * @example
+   * <MyContext.Provider value={value}>
+   *   {children}
+   * </MyContext.Provider>
+   * // Provider 对应的 Fiber 节点的 tag 值为 ContextProvider (11)
+   */
+  export type ContextProvider = 11;
+
+  /**
+   * Suspense 组件标识
+   * 用于标识 Suspense 组件的 Fiber 节点
+   * @example
+   * <Suspense fallback={<Loading />}>
+   *   <SomeComponent />
+   * </Suspense>
+   * // Suspense 对应的 Fiber 节点的 tag 值为 SuspenseComponent (13)
+   */
+  export type SuspenseComponent = 13;
+
+  /**
+   * Offscreen 组件标识
+   * 用于标识 Offscreen 组件的 Fiber 节点
+   * 通常用于实现一些性能优化相关的功能
+   * @example
+   * // React 内部使用，用于优化渲染性能
+   * // 对应的 Fiber 节点的 tag 值为 OffscreenComponent (14)
+   */
+  export type OffscreenComponent = 14;
+
+  /**
+   * WorkTag 类型定义
+   * 联合类型，包含所有可能的 Fiber 节点类型标识
+   * 在 FiberNode 的 tag 属性中使用
+   */
+  export type WorkTag =
+    | typeof FunctionComponent // 函数组件
+    | typeof HostRoot // 根节点
+    | typeof HostComponent // 原生 DOM 元素
+    | typeof HostText // 文本节点
+    | typeof Fragment // Fragment 片段
+    | typeof ContextProvider // Context Provider 组件
+    | typeof SuspenseComponent // Suspense 组件
+    | typeof OffscreenComponent; // Offscreen 组件
+}
+```
