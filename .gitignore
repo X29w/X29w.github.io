@@ -12,8 +12,8 @@
 /.vite
 .vite-temp
 
-# tanstack router generated
-/src/routeTree.gen.ts
+# tanstack router generated (committed so CI doesn't need to regenerate)
+# /src/routeTree.gen.ts
 
 # misc
 .DS_Store
