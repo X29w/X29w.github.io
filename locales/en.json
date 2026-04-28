@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "title": "Portfolio — X29",
+    "description": "Creative developer portfolio showcasing projects, skills, and experience"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Your Name",
+    "tagline": "Creative Developer & Designer"
+  },
+  "about": {
+    "title": "About Me",
+    "bio": "A passionate developer with expertise in building modern web applications. I love creating elegant solutions to complex problems, with a focus on performance, accessibility, and user experience.",
+    "skillsTitle": "Skills & Technologies"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "viewProject": "View Project",
+    "viewDetails": "View Details",
+    "close": "Close",
+    "items": [
+      {
+        "name": "Project Alpha",
+        "description": "A modern web application built with cutting-edge technologies",
+        "detail": "This project was built using React, TypeScript, Next.js and Tailwind CSS. It features server-side rendering, dynamic routing, and a fully responsive design system. The application handles complex state management and integrates with multiple third-party APIs."
+      },
+      {
+        "name": "Project Beta",
+        "description": "An innovative tool that streamlines developer workflows",
+        "detail": "A WebGL-powered visualization tool built with Three.js and React Three Fiber. It renders complex 3D data in real-time, supporting interactive exploration with smooth camera controls and dynamic lighting. Optimized for performance across devices."
+      },
+      {
+        "name": "Project Gamma",
+        "description": "A creative experiment exploring the boundaries of web design",
+        "detail": "A full-stack application with a Node.js backend, PostgreSQL database, and GraphQL API. Containerized with Docker for consistent deployment. Features include real-time data synchronization, role-based access control, and automated CI/CD pipelines."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "tagline": "Let's build something amazing together"
+  }
+}

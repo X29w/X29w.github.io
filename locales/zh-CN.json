@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "title": "个人作品集 — X29",
+    "description": "创意开发者作品集，展示项目、技能和经验"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于",
+    "projects": "项目",
+    "contact": "联系"
+  },
+  "hero": {
+    "name": "Your Name",
+    "tagline": "创意开发者 & 设计师"
+  },
+  "about": {
+    "title": "关于我",
+    "bio": "一位热衷于构建现代 Web 应用的开发者。我喜欢为复杂问题创造优雅的解决方案，专注于性能、无障碍访问和用户体验。",
+    "skillsTitle": "技能 & 技术栈"
+  },
+  "projects": {
+    "title": "精选项目",
+    "viewProject": "查看项目",
+    "viewDetails": "查看详情",
+    "close": "关闭",
+    "items": [
+      {
+        "name": "项目 Alpha",
+        "description": "使用前沿技术构建的现代 Web 应用",
+        "detail": "该项目使用 React、TypeScript、Next.js 和 Tailwind CSS 构建。具备服务端渲染、动态路由和完整的响应式设计系统。应用处理复杂的状态管理并集成了多个第三方 API。"
+      },
+      {
+        "name": "项目 Beta",
+        "description": "简化开发者工作流程的创新工具",
+        "detail": "基于 Three.js 和 React Three Fiber 构建的 WebGL 可视化工具。实时渲染复杂的 3D 数据，支持交互式探索、流畅的相机控制和动态光照。针对跨设备性能进行了优化。"
+      },
+      {
+        "name": "项目 Gamma",
+        "description": "探索 Web 设计边界的创意实验",
+        "detail": "全栈应用，后端使用 Node.js，数据库使用 PostgreSQL，API 使用 GraphQL。通过 Docker 容器化实现一致的部署。功能包括实时数据同步、基于角色的访问控制和自动化 CI/CD 流水线。"
+      }
+    ]
+  },
+  "contact": {
+    "title": "联系我",
+    "tagline": "一起创造令人惊叹的作品"
+  }
+}

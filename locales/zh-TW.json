@@ -1,0 +1,48 @@
+{
+  "metadata": {
+    "title": "個人作品集 — X29",
+    "description": "創意開發者作品集，展示專案、技能和經驗"
+  },
+  "nav": {
+    "home": "首頁",
+    "about": "關於",
+    "projects": "專案",
+    "contact": "聯繫"
+  },
+  "hero": {
+    "name": "Your Name",
+    "tagline": "創意開發者 & 設計師"
+  },
+  "about": {
+    "title": "關於我",
+    "bio": "一位熱衷於建構現代 Web 應用的開發者。我喜歡為複雜問題創造優雅的解決方案，專注於效能、無障礙存取和使用者體驗。",
+    "skillsTitle": "技能 & 技術棧"
+  },
+  "projects": {
+    "title": "精選專案",
+    "viewProject": "查看專案",
+    "viewDetails": "查看詳情",
+    "close": "關閉",
+    "items": [
+      {
+        "name": "專案 Alpha",
+        "description": "使用前沿技術建構的現代 Web 應用",
+        "detail": "該專案使用 React、TypeScript、Next.js 和 Tailwind CSS 建構。具備伺服器端渲染、動態路由和完整的響應式設計系統。應用處理複雜的狀態管理並整合了多個第三方 API。"
+      },
+      {
+        "name": "專案 Beta",
+        "description": "簡化開發者工作流程的創新工具",
+        "detail": "基於 Three.js 和 React Three Fiber 建構的 WebGL 視覺化工具。即時渲染複雜的 3D 資料，支援互動式探索、流暢的相機控制和動態光照。針對跨裝置效能進行了最佳化。"
+      },
+      {
+        "name": "專案 Gamma",
+        "description": "探索 Web 設計邊界的創意實驗",
+        "detail": "全端應用，後端使用 Node.js，資料庫使用 PostgreSQL，API 使用 GraphQL。透過 Docker 容器化實現一致的部署。功能包括即時資料同步、基於角色的存取控制和自動化 CI/CD 流水線。"
+      }
+    ]
+  },
+  "contact": {
+    "title": "聯繫我",
+    "tagline": "一起創造令人驚嘆的作品"
+  }
+}
