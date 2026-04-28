@@ -56,13 +56,13 @@ export const computeTiltAngle = (
  */
 const ProjectCard: FC<ProjectCardProps> = ({ titleKey, descriptionKey, detailKey, tags, href, image, isMobile }) => {
   const { t } = useTranslation();
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLButtonElement>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     if (isMobile) return;
     const card = cardRef.current;
     if (!card) return;
@@ -81,7 +81,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ titleKey, descriptionKey, detailKey
   return (
     <>
       <motion.button
-        ref={cardRef as React.RefObject<HTMLButtonElement>}
+        ref={cardRef}
         type="button"
         onMouseMove={handleMouseMove}
         onMouseEnter={() => !isMobile && setIsHovered(true)}
