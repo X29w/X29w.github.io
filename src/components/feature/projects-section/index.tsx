@@ -10,7 +10,9 @@ import ProjectModal from '@/components/feature/project-modal';
  * pins while vertical scroll drives a horizontal pan through large showcase
  * cards. Implemented with Motion's useScroll (sticky inner track) per the
  * taste-skill horizontal-pan pattern — pin starts at top, scrubbed travel.
- * On mobile and under reduced motion it collapses to a vertical stack.
+ * Mobile collapses to a vertical stack. Reduced motion keeps the layout but
+ * skips spring smoothing so motion is instant rather than removing the
+ * signature interaction.
  */
 const ProjectsSection: FC = () => {
   const { t } = useTranslation();
@@ -24,11 +26,11 @@ const ProjectsSection: FC = () => {
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)');
-    const update = () => setIsDesktop(mq.matches && !reduce);
+    const update = () => setIsDesktop(mq.matches);
     update();
     mq.addEventListener('change', update);
     return () => mq.removeEventListener('change', update);
-  }, [reduce]);
+  }, []);
 
   // Measure how far the track must travel horizontally.
   useEffect(() => {
@@ -56,7 +58,11 @@ const ProjectsSection: FC = () => {
     offset: ['start start', 'end end'],
   });
   const rawX = useTransform(scrollYProgress, [0, 1], [0, -distance]);
-  const x = useSpring(rawX, { stiffness: 120, damping: 30, mass: 0.4 });
+  // Under reduced motion, drive the track directly (no spring), so the layout
+  // stays but motion is instant — preserves the horizontal pan as the page's
+  // signature interaction without violating the a11y preference.
+  const smoothX = useSpring(rawX, { stiffness: 120, damping: 30, mass: 0.4 });
+  const x = reduce ? rawX : smoothX;
 
   return (
     <section id="projects" ref={sectionRef} className="relative scroll-mt-24">
