@@ -1,65 +1,38 @@
 import { useEffect, useState } from 'react';
 import type { FC } from 'react';
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { X, ArrowUpRight } from 'lucide-react';
+import { IconX, IconArrowUpRight } from '@tabler/icons-react';
+import type { Project } from '@/utils/feature/constant';
 
 /**
- * @description [zh-CN] 项目详情模态框组件的属性接口
- * @description [en] ProjectModal component props interface
- * @description [ja] ProjectModal コンポーネントのプロパティインターフェース
- * @description [zh-TW] 專案詳情模態框元件的屬性介面
+ * @description [en] Project detail modal. Sharp editorial panel with a real
+ * cover image, full write-up, tags, and an external link. Esc + backdrop close,
+ * body scroll lock, focus-friendly.
  */
 interface ProjectModalProps {
   isOpen: boolean;
   onClose: () => void;
-  titleKey: string;
-  descriptionKey: string;
-  detailKey: string;
-  tags: string[];
-  href?: string;
-  /** @description [zh-CN] 可选的装饰性封面图路径 @description [en] Optional decorative cover image path @description [ja] 任意の装飾用カバー画像パス @description [zh-TW] 可選的裝飾性封面圖路徑 */
-  image?: string;
+  project: Project | null;
 }
 
-/**
- * @description [zh-CN] 项目详情模态框组件，展示项目的完整信息
- * @description [en] Project detail modal component that displays full project information
- * @description [ja] プロジェクトの完全な情報を表示するプロジェクト詳細モーダルコンポーネント
- * @description [zh-TW] 專案詳情模態框元件，展示專案的完整資訊
- */
-const ProjectModal: FC<ProjectModalProps> = ({
-  isOpen,
-  onClose,
-  titleKey,
-  descriptionKey,
-  detailKey,
-  tags,
-  href,
-  image,
-}) => {
+const ProjectModal: FC<ProjectModalProps> = ({ isOpen, onClose, project }) => {
   const { t } = useTranslation();
+  const reduce = useReducedMotion();
   const [mounted, setMounted] = useState(false);
 
-  // Ensure portal target is available (client-side only)
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Lock body scroll when open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
   }, [isOpen]);
 
-  // Close on Escape
   useEffect(() => {
     if (!isOpen) return;
     const handleKey = (e: KeyboardEvent) => {
@@ -71,127 +44,83 @@ const ProjectModal: FC<ProjectModalProps> = ({
 
   if (!mounted) return null;
 
+  const nameKey = project ? `projects.items.${project.translationIndex}.name` : '';
+  const summaryKey = project ? `projects.items.${project.translationIndex}.summary` : '';
+  const detailKey = project ? `projects.items.${project.translationIndex}.detail` : '';
+
   return createPortal(
     <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
-          {/* Backdrop */}
+      {isOpen && project && (
+        <div className="fixed inset-0 z-[100] flex items-end justify-center md:items-center">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.25 }}
             className="absolute inset-0 bg-background/80 backdrop-blur-sm"
             onClick={onClose}
           />
 
-          {/* Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="relative w-full max-w-lg rounded-2xl border border-white/[0.08] bg-surface/95 backdrop-blur-xl p-6 md:p-8 shadow-2xl"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-y-auto border border-border bg-bg"
+            style={{ background: 'var(--bg)' }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Top accent line */}
-            <div
-              className="absolute top-0 left-0 right-0 h-px rounded-t-2xl"
-              style={{
-                background: 'linear-gradient(90deg, transparent, var(--accent), var(--accent-secondary), transparent)',
-              }}
-            />
-
-            {/* Decorative cover image area */}
-            <div className="relative h-40 md:h-48 -mx-6 md:-mx-8 -mt-6 md:-mt-8 mb-6 rounded-t-2xl overflow-hidden">
-              {image ? (
-                <img
-                  src={image}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover opacity-30"
-                />
-              ) : null}
-              {/* Gradient overlay — always present, acts as fallback when no image */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(135deg, var(--surface) 0%, var(--bg) 50%, var(--surface) 100%)',
-                  opacity: image ? 0.7 : 1,
-                }}
+            {/* Cover */}
+            <div className="relative aspect-[16/9] w-full overflow-hidden">
+              <img
+                src={project.image}
+                alt={`${t(nameKey)} cover`}
+                className="h-full w-full object-cover"
               />
-              {/* Decorative dot grid */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: 'radial-gradient(circle, var(--muted) 1px, transparent 1px)',
-                  backgroundSize: '24px 24px',
-                  opacity: 0.06,
-                }}
-              />
-              {/* Bottom fade into content */}
-              <div
-                className="absolute bottom-0 left-0 right-0 h-16"
-                style={{ background: 'linear-gradient(to top, var(--surface), transparent)' }}
-              />
+              <button
+                onClick={onClose}
+                className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border border-background/20 bg-background/70 text-foreground backdrop-blur-sm transition-colors hover:bg-accent hover:text-white"
+                aria-label={t('projects.close')}
+                type="button"
+              >
+                <IconX className="h-5 w-5" stroke={1.5} />
+              </button>
             </div>
 
-            {/* Close button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full border border-border/50 text-muted hover:text-foreground hover:border-accent/40 transition-all duration-200 cursor-pointer"
-              aria-label={t('projects.close')}
-              type="button"
-            >
-              <X className="h-4 w-4" />
-            </button>
+            {/* Body */}
+            <div className="p-6 md:p-10">
+              <div className="flex items-baseline justify-between gap-4">
+                <h3 className="font-display text-4xl text-foreground md:text-5xl">
+                  {t(nameKey)}
+                </h3>
+                <span className="font-mono text-sm text-muted">{project.year}</span>
+              </div>
 
-            {/* Content */}
-            <div className="pr-8">
-              <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-3">
-                {t(titleKey)}
-              </h3>
+              <p className="mt-3 text-base text-accent">{t(summaryKey)}</p>
 
-              <p className="text-sm text-muted mb-4">
-                {t(descriptionKey)}
+              <div className="hairline my-7" />
+
+              <p className="max-w-[60ch] text-base leading-relaxed text-muted md:text-lg">
+                {t(detailKey)}
               </p>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1 text-xs font-medium text-muted font-mono"
-                  >
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="font-mono text-xs uppercase tracking-wider text-muted">
                     {tag}
                   </span>
                 ))}
               </div>
 
-              {/* Divider */}
-              <div
-                className="h-px w-full mb-6"
-                style={{
-                  background: 'linear-gradient(90deg, var(--accent), var(--accent-secondary), transparent)',
-                  opacity: 0.2,
-                }}
-              />
-
-              {/* Detail */}
-              <p className="text-sm md:text-base text-foreground/80 leading-relaxed mb-6">
-                {t(detailKey)}
-              </p>
-
-              {/* Link (only if href exists) */}
-              {href && (
+              {project.href && (
                 <a
-                  href={href}
+                  href={project.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-border/50 px-5 py-2.5 text-sm font-medium text-accent hover:text-accent-secondary hover:border-accent/40 hover:shadow-[0_0_20px_rgba(212,212,216,0.1)] transition-all duration-300"
+                  className="group mt-10 inline-flex items-center gap-3 border border-foreground px-6 py-4 font-mono text-sm uppercase tracking-widest text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
                 >
                   {t('projects.viewProject')}
-                  <ArrowUpRight className="h-4 w-4" />
+                  <IconArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" stroke={1.5} />
                 </a>
               )}
             </div>

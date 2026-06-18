@@ -1,48 +1,80 @@
 {
   "metadata": {
-    "title": "Portfolio — X29",
-    "description": "Creative developer portfolio showcasing projects, skills, and experience"
+    "title": "X29 - Full-Stack & Cross-Platform Engineer",
+    "description": "X29 is a full-stack engineer working across web, desktop, and mobile with React, NestJS, Electron, React Native, and Taro."
   },
   "nav": {
-    "home": "Home",
-    "about": "About",
-    "projects": "Projects",
+    "home": "Index",
+    "about": "Profile",
+    "projects": "Work",
     "contact": "Contact"
   },
   "hero": {
-    "name": "Your Name",
-    "tagline": "Creative Developer & Designer"
+    "role": "Full-Stack / Cross-Platform Engineer",
+    "lineOne": "I ship",
+    "lineTwo": "end to end",
+    "lineThree": "across platforms",
+    "intro": "From the database to the pixel, web to desktop to mobile. I take ownership of the whole stack and care about how the product actually feels in someone's hands.",
+    "available": "Building & shipping",
+    "cta": "See the work"
   },
   "about": {
-    "title": "About Me",
-    "bio": "A passionate developer with expertise in building modern web applications. I love creating elegant solutions to complex problems, with a focus on performance, accessibility, and user experience.",
-    "skillsTitle": "Skills & Technologies"
+    "label": "Profile",
+    "heading": "I own products end to end, from API design to the last frame of an animation.",
+    "paragraphOne": "Six years building real products: React and TypeScript on the front, NestJS and Node on the back, Electron for desktop, React Native and Taro for mobile and mini-programs. One person, the whole pipeline.",
+    "paragraphTwo": "I think like an owner, not a ticket-taker. I would rather understand why something is being built and push back when it is wrong than ship a feature nobody needed. Performance, motion, and the details are where I do my best work.",
+    "stats": {
+      "yearsValue": "6",
+      "yearsLabel": "Years shipping",
+      "projectsValue": "30",
+      "projectsLabel": "Products built",
+      "stackValue": "5",
+      "stackLabel": "Platforms covered"
+    }
   },
   "projects": {
-    "title": "Featured Projects",
-    "viewProject": "View Project",
-    "viewDetails": "View Details",
+    "label": "Selected work",
+    "heading": "Things I have built",
+    "viewProject": "Visit site",
+    "viewDetails": "Read more",
     "close": "Close",
     "items": [
       {
-        "name": "Project Alpha",
-        "description": "A modern web application built with cutting-edge technologies",
-        "detail": "This project was built using React, TypeScript, Next.js and Tailwind CSS. It features server-side rendering, dynamic routing, and a fully responsive design system. The application handles complex state management and integrates with multiple third-party APIs."
+        "name": "Meridian",
+        "summary": "Real-time analytics platform, full stack",
+        "detail": "Meridian is a real-time analytics platform I built end to end: a NestJS backend with PostgreSQL and a WebSocket layer, and a React front end with a virtualized event table that stays smooth past 50k rows. The hard part was streaming live data while keeping every interaction under 100ms, so I designed the push protocol and the front-end rendering together rather than treating them as separate problems."
       },
       {
-        "name": "Project Beta",
-        "description": "An innovative tool that streamlines developer workflows",
-        "detail": "A WebGL-powered visualization tool built with Three.js and React Three Fiber. It renders complex 3D data in real-time, supporting interactive exploration with smooth camera controls and dynamic lighting. Optimized for performance across devices."
+        "name": "Halcyon",
+        "summary": "Cross-platform desktop app",
+        "detail": "Halcyon is a desktop application built on Electron with a React UI and a local Node.js service backed by SQLite. I owned the architecture: the main and renderer process split, an offline-first data layer, auto-update, and native menu integration on macOS and Windows. It runs the same codebase on both platforms without feeling like a website in a window."
       },
       {
-        "name": "Project Gamma",
-        "description": "A creative experiment exploring the boundaries of web design",
-        "detail": "A full-stack application with a Node.js backend, PostgreSQL database, and GraphQL API. Containerized with Docker for consistent deployment. Features include real-time data synchronization, role-based access control, and automated CI/CD pipelines."
+        "name": "Fieldnote",
+        "summary": "Mobile app + mini-program from one codebase",
+        "detail": "Fieldnote ships to iOS, Android, and WeChat mini-program from a shared codebase, using React Native for the apps and Taro for the mini-program, with a TypeScript GraphQL backend. I built the shared component layer and the sync engine so a note edited offline on a phone reconciles cleanly when it reconnects. One team, three platforms, no copy-paste."
+      },
+      {
+        "name": "Cobalt",
+        "summary": "WebGL motion engine, open source",
+        "detail": "Cobalt is an open-source WebGL engine for scroll-driven and interactive scenes, written with raw GLSL shaders and a thin TypeScript runtime. I authored the shader library, the motion primitives, and the docs. The same graphics and particle work is what drives the interactive header on this page."
       }
     ]
   },
+  "capabilities": {
+    "label": "Stack"
+  },
   "contact": {
-    "title": "Get In Touch",
-    "tagline": "Let's build something amazing together"
+    "label": "Contact",
+    "heading": "Let's build something good",
+    "intro": "If you are hiring, collaborating, or just curious about the code behind this page, my inbox is open. I reply to everything that is real.",
+    "emailLabel": "Email",
+    "email": "hi@x29.dev",
+    "elsewhere": "Elsewhere"
+  },
+  "footer": {
+    "builtWith": "Built with",
+    "backToTop": "Back to top",
+    "rights": "All rights reserved"
   }
 }

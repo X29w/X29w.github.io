@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import type { FC } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X } from 'lucide-react';
+import { IconX } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import { ThemeToggle } from '@/components/config/theme-toggle';
 import { LanguageSwitcher } from '@/components/config/language-switcher';
@@ -72,11 +72,11 @@ const MobileMenu: FC<MobileMenuProps> = ({ isOpen, onClose, locale }) => {
           <div className="flex items-center justify-end p-4">
             <button
               onClick={onClose}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground hover:text-accent transition-colors cursor-pointer"
+              className="flex h-10 w-10 items-center justify-center border border-border text-foreground hover:text-accent transition-colors cursor-pointer"
               aria-label="Close menu"
               type="button"
             >
-              <X className="h-5 w-5" />
+              <IconX className="h-5 w-5" stroke={1.5} />
             </button>
           </div>
 
@@ -85,7 +85,7 @@ const MobileMenu: FC<MobileMenuProps> = ({ isOpen, onClose, locale }) => {
               <button
                 key={link.id}
                 onClick={() => handleLinkClick(link.id)}
-                className="text-2xl font-medium text-foreground hover:text-accent transition-colors cursor-pointer"
+                className="font-display text-4xl text-foreground hover:text-accent transition-colors cursor-pointer"
                 type="button"
               >
                 {t(`nav.${link.key}`)}

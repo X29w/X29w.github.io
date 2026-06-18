@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { Languages } from "lucide-react";
+import { IconLanguage } from "@tabler/icons-react";
 import { LOCALE_STORAGE_KEY } from "@/utils/config/locale-match";
 
 interface LanguageSwitcherProps {
@@ -53,19 +53,19 @@ export const LanguageSwitcher = ({
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-9 min-w-[44px] items-center gap-1.5 rounded-full border border-border bg-surface px-3 text-sm text-foreground hover:text-accent transition-colors cursor-pointer"
+        className="flex h-9 min-w-[44px] items-center gap-1.5 border border-border bg-surface px-3 text-sm text-foreground hover:text-accent transition-colors cursor-pointer"
         aria-label="Switch language"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
         type="button"
       >
-        <Languages className="h-4 w-4" />
+        <IconLanguage className="h-4 w-4" stroke={1.5} />
         <span>{currentLang.short}</span>
       </button>
 
       {isOpen && (
         <div
-          className={`absolute right-0 w-44 rounded-xl border border-border bg-surface py-1.5 shadow-xl z-50 ${
+          className={`absolute right-0 w-44 border border-border bg-surface py-1.5 shadow-xl z-50 ${
             dropUp ? "bottom-full mb-2" : "top-full mt-2"
           }`}
           role="listbox"

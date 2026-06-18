@@ -1,48 +1,80 @@
 {
   "metadata": {
-    "title": "個人作品集 — X29",
-    "description": "創意開發者作品集，展示專案、技能和經驗"
+    "title": "X29 - 全端 / 跨平台工程師",
+    "description": "X29 是一名全端工程師，橫跨 Web、桌面和行動端，技術棧包括 React、NestJS、Electron、React Native 和 Taro。"
   },
   "nav": {
     "home": "首頁",
     "about": "關於",
     "projects": "專案",
-    "contact": "聯繫"
+    "contact": "聯絡"
   },
   "hero": {
-    "name": "Your Name",
-    "tagline": "創意開發者 & 設計師"
+    "role": "全端 / 跨平台工程師",
+    "lineOne": "從想法到上線",
+    "lineTwo": "我全都能搞定",
+    "lineThree": "橫跨多端",
+    "intro": "從資料庫到像素，從 Web 到桌面再到行動端。整條鏈路我都扛得下來，也始終在意產品到了使用者手裡到底好不好用。",
+    "available": "持續構建中",
+    "cta": "看看作品"
   },
   "about": {
-    "title": "關於我",
-    "bio": "一位熱衷於建構現代 Web 應用的開發者。我喜歡為複雜問題創造優雅的解決方案，專注於效能、無障礙存取和使用者體驗。",
-    "skillsTitle": "技能 & 技術棧"
+    "label": "關於",
+    "heading": "我做產品是從頭管到尾的，從 API 設計一直到動畫的最後一幀。",
+    "paragraphOne": "做了六年真東西：前端 React 加 TypeScript，後端 NestJS 和 Node，桌面端用 Electron，行動端和小程式用 React Native 和 Taro。一個人就能把整條流水線跑通。",
+    "paragraphTwo": "我把自己當成產品的主人，而不是接需求的工具人。比起悶頭做一個沒人要的功能，我更願意先搞清楚為什麼要做，該據理力爭的時候也會爭。效能、動效和那些細節，是我做得最好的地方。",
+    "stats": {
+      "yearsValue": "6",
+      "yearsLabel": "年經驗",
+      "projectsValue": "30",
+      "projectsLabel": "做過的產品",
+      "stackValue": "5",
+      "stackLabel": "覆蓋的端"
+    }
   },
   "projects": {
-    "title": "精選專案",
-    "viewProject": "查看專案",
+    "label": "精選專案",
+    "heading": "我做過的東西",
+    "viewProject": "造訪網站",
     "viewDetails": "查看詳情",
     "close": "關閉",
     "items": [
       {
-        "name": "專案 Alpha",
-        "description": "使用前沿技術建構的現代 Web 應用",
-        "detail": "該專案使用 React、TypeScript、Next.js 和 Tailwind CSS 建構。具備伺服器端渲染、動態路由和完整的響應式設計系統。應用處理複雜的狀態管理並整合了多個第三方 API。"
+        "name": "Meridian",
+        "summary": "全端即時資料分析平台",
+        "detail": "Meridian 是一個我從頭做到尾的即時資料分析平台：後端用 NestJS 加 PostgreSQL，配一層 WebSocket，前端是 React，做了一張超過五萬列還能滑順捲動的虛擬列表。最難的地方是要一邊即時推資料，一邊把每個互動壓在 100 毫秒以內，所以我把推送協定和前端渲染放在一起設計，而不是當成兩件事。"
       },
       {
-        "name": "專案 Beta",
-        "description": "簡化開發者工作流程的創新工具",
-        "detail": "基於 Three.js 和 React Three Fiber 建構的 WebGL 視覺化工具。即時渲染複雜的 3D 資料，支援互動式探索、流暢的相機控制和動態光照。針對跨裝置效能進行了最佳化。"
+        "name": "Halcyon",
+        "summary": "跨平台桌面應用",
+        "detail": "Halcyon 是一個基於 Electron 的桌面應用，UI 用 React，本地跑一個 Node.js 服務，資料落在 SQLite。架構是我定的：主行程和渲染行程怎麼拆、離線優先的資料層、自動更新，以及 macOS 和 Windows 上的原生選單整合。同一套程式碼在兩個平台跑，而且不會讓人覺得是套了個殼的網頁。"
       },
       {
-        "name": "專案 Gamma",
-        "description": "探索 Web 設計邊界的創意實驗",
-        "detail": "全端應用，後端使用 Node.js，資料庫使用 PostgreSQL，API 使用 GraphQL。透過 Docker 容器化實現一致的部署。功能包括即時資料同步、基於角色的存取控制和自動化 CI/CD 流水線。"
+        "name": "Fieldnote",
+        "summary": "一套程式碼同時出 App 和小程式",
+        "detail": "Fieldnote 用一套程式碼同時發布到 iOS、Android 和微信小程式，App 用 React Native，小程式用 Taro，後端是 TypeScript 寫的 GraphQL。我做了共享元件層和同步引擎，讓手機上離線改的筆記在重新連網後能乾淨地合併回去。一個團隊，三個端，不靠複製貼上。"
+      },
+      {
+        "name": "Cobalt",
+        "summary": "開源 WebGL 動效引擎",
+        "detail": "Cobalt 是一個開源的 WebGL 引擎，用來做捲動驅動和互動式場景，底層是手寫的 GLSL 著色器加一層很薄的 TypeScript 執行時。著色器庫、動效原語和文件都是我寫的。頁面頂部那個互動式粒子模組，背後用的就是同一套圖形和粒子能力。"
       }
     ]
   },
+  "capabilities": {
+    "label": "技術棧"
+  },
   "contact": {
-    "title": "聯繫我",
-    "tagline": "一起創造令人驚嘆的作品"
+    "label": "聯絡我",
+    "heading": "一起做點好東西",
+    "intro": "無論是招人、找合作，還是單純好奇這個頁面背後的程式碼，都可以寄信給我。只要是認真的訊息，我都會回。",
+    "emailLabel": "信箱",
+    "email": "hi@x29.dev",
+    "elsewhere": "其他平台"
+  },
+  "footer": {
+    "builtWith": "技術棧",
+    "backToTop": "回到頂部",
+    "rights": "保留所有權利"
   }
 }

@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
 
 /* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind v4 custom variant syntax */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -8,14 +11,20 @@
   --color-background: var(--bg);
   --color-foreground: var(--fg);
   --color-accent: var(--accent);
-  --color-accent-secondary: var(--accent-secondary);
   --color-surface: var(--surface);
-  --color-border: var(--border-color);
+  --color-border: var(--line);
   --color-muted: var(--muted);
+  --font-display: "Space Grotesk Variable", system-ui, sans-serif;
+  --font-sans: "Geist Variable", system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -28,165 +37,186 @@ body {
   margin: 0;
 }
 
+/*
+  High-contrast monochrome tech system.
+  Near-black canvas + cold white type. ONE accent: ice blue, used as a precise
+  signal color (links, active states, shader highlights), never as fill slop.
+  ONE radius scale: sharp (0). The "tech" comes from grid, noise, shaders, and
+  motion — not from color.
+*/
 :root {
-  --bg: #fafafa;
-  --fg: #171717;
-  --accent: #52525b;
-  --accent-secondary: #71717a;
+  --bg: #f3f5f7;
+  --fg: #0a0d12;
+  --accent: #0aa0c8;
+  --accent-rgb: 10, 160, 200;
   --surface: #ffffff;
-  --border-color: #e4e4e7;
-  --muted: #71717a;
+  --line: #d8dde3;
+  --muted: #5a626d;
+  --grid: rgba(10, 13, 18, 0.045);
 }
 
 .dark {
-  --bg: #09090b;
-  --fg: #fafafa;
-  --accent: #d4d4d8;
-  --accent-secondary: #a1a1aa;
-  --surface: #18181b;
-  --border-color: #27272a;
-  --muted: #71717a;
+  --bg: #050608;
+  --fg: #eef2f6;
+  --accent: #5fd5ff;
+  --accent-rgb: 95, 213, 255;
+  --surface: #0a0c10;
+  --line: #161a20;
+  --muted: #6b7480;
+  --grid: rgba(255, 255, 255, 0.035);
 }
 
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Subtle noise texture overlay for depth — only on pointer devices */
-@media (pointer: fine) {
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 256px 256px;
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ===== Type primitives ===== */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.prompt {
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.text-outline {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px var(--line);
+  color: transparent;
+}
+
+/* ===== Layout primitives ===== */
+.shell {
+  width: 100%;
+  max-width: 1480px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 3rem;
   }
 }
 
-/* Theme transition */
-body,
-a,
-button {
-  transition-property: background-color, color, border-color, fill, stroke;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
+.hairline {
+  height: 1px;
+  width: 100%;
+  background: var(--line);
 }
 
-/* No transitions on canvas */
-canvas,
-canvas * {
-  transition: none !important;
+/* ===== Blueprint grid ===== */
+.tech-grid {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 72px 72px;
 }
 
-/* ===== Utility Animations ===== */
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+/* Fine scanline overlay, fixed + non-interactive (perf-safe). */
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.4;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(var(--accent-rgb), 0.012) 3px,
+    transparent 4px
+  );
+  mix-blend-mode: screen;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.1); }
+/* ===== Blinking caret ===== */
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.caret {
+  display: inline-block;
+  width: 0.58em;
+  height: 0.92em;
+  margin-left: 0.1em;
+  translate: 0 0.1em;
+  background: var(--accent);
+  animation: caret-blink 1.1s steps(1) infinite;
 }
 
+/* ===== HUD corner ticks ===== */
+.hud-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--accent);
+  opacity: 0.7;
+}
+
+/* ===== Marquee (single instance) ===== */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-@keyframes scrollLine {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+/* ===== Link underline grow ===== */
+.link-grow {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes borderGlow {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
+.link-grow:hover {
+  background-size: 100% 1px;
 }
 
-/* Grid background pattern (Vercel-style) */
-.grid-pattern {
-  background-image:
-    linear-gradient(var(--border-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-.dark .grid-pattern {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-}
-
-/* Glass morphism utility */
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.dark .glass {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.06);
-}
-
-/* Gradient text utility */
-.gradient-text {
-  background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 60%, var(--accent-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Text stroke only on md+ screens */
-@media (min-width: 768px) {
-  .contact-title-stroke {
-    -webkit-text-stroke: 1px var(--accent);
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-}
-
-/* Animated gradient border */
-.gradient-border {
-  position: relative;
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-secondary), transparent, var(--accent));
-  background-size: 300% 300%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: gradientShift 4s ease infinite;
-  opacity: 0.4;
-  transition: opacity 0.3s ease;
-}
-
-.gradient-border:hover::before {
-  opacity: 1;
+  .scanlines::after {
+    display: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

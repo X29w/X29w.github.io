@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "个人作品集 — X29",
-    "description": "创意开发者作品集，展示项目、技能和经验"
+    "title": "X29 - 全栈 / 跨端工程师",
+    "description": "X29 是一名全栈工程师，横跨 Web、桌面和移动端，技术栈包括 React、NestJS、Electron、React Native 和 Taro。"
   },
   "nav": {
     "home": "首页",
@@ -10,39 +10,71 @@
     "contact": "联系"
   },
   "hero": {
-    "name": "Your Name",
-    "tagline": "创意开发者 & 设计师"
+    "role": "全栈 / 跨端工程师",
+    "lineOne": "从想法到上线",
+    "lineTwo": "我全都能搞定",
+    "lineThree": "横跨多端",
+    "intro": "从数据库到像素，从 Web 到桌面再到移动端。整条链路我都能扛下来，也始终在意产品到了用户手里到底好不好用。",
+    "available": "持续构建中",
+    "cta": "看看作品"
   },
   "about": {
-    "title": "关于我",
-    "bio": "一位热衷于构建现代 Web 应用的开发者。我喜欢为复杂问题创造优雅的解决方案，专注于性能、无障碍访问和用户体验。",
-    "skillsTitle": "技能 & 技术栈"
+    "label": "关于",
+    "heading": "我做产品是从头管到尾的，从 API 设计一直到动画的最后一帧。",
+    "paragraphOne": "做了六年真东西：前端 React 加 TypeScript，后端 NestJS 和 Node，桌面端用 Electron，移动端和小程序用 React Native 和 Taro。一个人就能把整条流水线跑通。",
+    "paragraphTwo": "我把自己当成产品的主人，而不是接需求的工具人。比起闷头做一个没人要的功能，我更愿意先搞清楚为什么要做，该拍桌子的时候也会拍。性能、动效和那些细节，是我做得最好的地方。",
+    "stats": {
+      "yearsValue": "6",
+      "yearsLabel": "年经验",
+      "projectsValue": "30",
+      "projectsLabel": "做过的产品",
+      "stackValue": "5",
+      "stackLabel": "覆盖的端"
+    }
   },
   "projects": {
-    "title": "精选项目",
-    "viewProject": "查看项目",
+    "label": "精选项目",
+    "heading": "我做过的东西",
+    "viewProject": "访问网站",
     "viewDetails": "查看详情",
     "close": "关闭",
     "items": [
       {
-        "name": "项目 Alpha",
-        "description": "使用前沿技术构建的现代 Web 应用",
-        "detail": "该项目使用 React、TypeScript、Next.js 和 Tailwind CSS 构建。具备服务端渲染、动态路由和完整的响应式设计系统。应用处理复杂的状态管理并集成了多个第三方 API。"
+        "name": "Meridian",
+        "summary": "全栈实时数据分析平台",
+        "detail": "Meridian 是一个我从头做到尾的实时数据分析平台：后端用 NestJS 加 PostgreSQL，配一层 WebSocket，前端是 React，做了一张超过五万行还能丝滑滚动的虚拟列表。最难的地方是要一边实时推数据，一边把每个交互压在 100 毫秒以内，所以我把推送协议和前端渲染放在一起设计，而不是当成两件事。"
       },
       {
-        "name": "项目 Beta",
-        "description": "简化开发者工作流程的创新工具",
-        "detail": "基于 Three.js 和 React Three Fiber 构建的 WebGL 可视化工具。实时渲染复杂的 3D 数据，支持交互式探索、流畅的相机控制和动态光照。针对跨设备性能进行了优化。"
+        "name": "Halcyon",
+        "summary": "跨平台桌面应用",
+        "detail": "Halcyon 是一个基于 Electron 的桌面应用，UI 用 React，本地跑一个 Node.js 服务，数据落在 SQLite。架构是我定的：主进程和渲染进程怎么拆、离线优先的数据层、自动更新、以及 macOS 和 Windows 上的原生菜单集成。同一套代码在两个平台跑，而且不会让人觉得是套了个壳的网页。"
       },
       {
-        "name": "项目 Gamma",
-        "description": "探索 Web 设计边界的创意实验",
-        "detail": "全栈应用，后端使用 Node.js，数据库使用 PostgreSQL，API 使用 GraphQL。通过 Docker 容器化实现一致的部署。功能包括实时数据同步、基于角色的访问控制和自动化 CI/CD 流水线。"
+        "name": "Fieldnote",
+        "summary": "一套代码同时出 App 和小程序",
+        "detail": "Fieldnote 用一套代码同时发布到 iOS、Android 和微信小程序，App 用 React Native，小程序用 Taro，后端是 TypeScript 写的 GraphQL。我做了共享组件层和同步引擎，让手机上离线改的笔记在重新联网后能干净地合并回去。一个团队，三个端，不靠复制粘贴。"
+      },
+      {
+        "name": "Cobalt",
+        "summary": "开源 WebGL 动效引擎",
+        "detail": "Cobalt 是一个开源的 WebGL 引擎，用来做滚动驱动和交互式场景，底层是手写的 GLSL 着色器加一层很薄的 TypeScript 运行时。着色器库、动效原语和文档都是我写的。页面顶部那个交互式粒子模块，背后用的就是同一套图形和粒子能力。"
       }
     ]
   },
+  "capabilities": {
+    "label": "技术栈"
+  },
   "contact": {
-    "title": "联系我",
-    "tagline": "一起创造令人惊叹的作品"
+    "label": "联系我",
+    "heading": "一起做点好东西",
+    "intro": "无论是招人、找合作，还是单纯好奇这个页面背后的代码，都可以给我发邮件。只要是认真的消息，我都会回。",
+    "emailLabel": "邮箱",
+    "email": "hi@x29.dev",
+    "elsewhere": "其他平台"
+  },
+  "footer": {
+    "builtWith": "技术栈",
+    "backToTop": "回到顶部",
+    "rights": "保留所有权利"
   }
 }

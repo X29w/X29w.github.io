@@ -1,28 +1,15 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { lazy, Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { LOCALES, LOCALE_STORAGE_KEY } from "@/utils/config/locale-match";
+import BootSequence from "@/components/common/boot-sequence";
 import NavigationBar from "@/components/feature/navigation-bar";
+import HeroSection from "@/components/feature/hero-section";
 import AboutSection from "@/components/feature/about-section";
+import ProjectsSection from "@/components/feature/projects-section";
+import CapabilitiesSection from "@/components/feature/capabilities-section";
 import ContactSection from "@/components/feature/contact-section";
 import Footer from "@/components/feature/footer";
-import HeroSection from "@/components/feature/hero-section";
-import ProjectsSection from "@/components/feature/projects-section";
-import { usePerformanceTier } from "@/utils/common/use-performance-tier";
-
-// Defer non-critical visual effects
-const FloatingParticles = lazy(
-  () =>
-    import("@/components/common/floating-particles").then((m) => ({
-      default: m.FloatingParticles,
-    }))
-);
-const CursorEffect = lazy(
-  () =>
-    import("@/components/common/cursor-effect").then((m) => ({
-      default: m.CursorEffect,
-    }))
-);
 
 export const Route = createFileRoute("/$locale")({
   beforeLoad: ({ params }) => {
@@ -51,23 +38,15 @@ function LocalePage() {
     }
   }, [locale, i18nInstance]);
 
-  const tier = usePerformanceTier();
-
   return (
-    <div className="relative overflow-x-clip">
-      {tier !== "low" && (
-        <Suspense fallback={null}>
-          <FloatingParticles />
-        </Suspense>
-      )}
-      <Suspense fallback={null}>
-        <CursorEffect />
-      </Suspense>
+    <div className="scanlines relative overflow-x-clip">
+      <BootSequence />
       <NavigationBar locale={locale} />
-      <main className="relative z-10">
+      <main>
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
+        <CapabilitiesSection />
         <ContactSection />
       </main>
       <Footer />

@@ -1,13 +1,13 @@
 import { useTheme } from 'next-themes';
-import { Sun, Moon } from 'lucide-react';
+import { IconSun, IconMoon } from '@tabler/icons-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 /**
- * @description [zh-CN] 主题切换按钮组件，支持明暗模式切换动�?
+ * @description [zh-CN] 主题切换按钮组件，支持明暗模式切换动�?
  * @description [en] Theme toggle button component with light/dark mode switch animation
- * @description [ja] ライ�?ダークモード切り替えアニメーション付きテーマトグルボタンコンポーネント
- * @description [zh-TW] 主題切換按鈕元件，支援明暗模式切換動�?
+ * @description [ja] ライ�?ダークモード切り替えアニメーション付きテーマトグルボタンコンポーネント
+ * @description [zh-TW] 主題切換按鈕元件，支援明暗模式切換動�?
  */
 export const ThemeToggle = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
@@ -24,7 +24,7 @@ export const ThemeToggle = () => {
   if (!mounted) {
     return (
       <button
-        className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-foreground"
+        className="relative flex h-9 w-9 items-center justify-center border border-border bg-surface text-foreground"
         aria-label="Toggle theme"
         type="button"
       >
@@ -38,7 +38,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="relative flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-foreground hover:text-accent transition-colors cursor-pointer"
+      className="relative flex h-9 w-9 items-center justify-center border border-border bg-surface text-foreground hover:text-accent transition-colors cursor-pointer"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       type="button"
     >
@@ -52,7 +52,7 @@ export const ThemeToggle = () => {
             transition={{ duration: 0.3, ease: 'easeOut' }}
             className="flex items-center justify-center"
           >
-            <Sun className="h-5 w-5" />
+            <IconSun className="h-5 w-5" stroke={1.5} />
           </motion.span>
         ) : (
           <motion.span
@@ -63,7 +63,7 @@ export const ThemeToggle = () => {
             transition={{ duration: 0.3, ease: 'easeOut' }}
             className="flex items-center justify-center"
           >
-            <Moon className="h-5 w-5" />
+            <IconMoon className="h-5 w-5" stroke={1.5} />
           </motion.span>
         )}
       </AnimatePresence>
