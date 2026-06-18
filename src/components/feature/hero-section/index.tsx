@@ -13,7 +13,7 @@ import CodeStream from '@/components/common/code-stream';
  * sandboxed in a column, so the whole viewport reads as one console. Floating
  * HUD modules (corner ticks, edge readouts, an auto-typing code snippet) sit on
  * top, and a live status bar runs along the bottom. Text content hugs the left
- * and is interleaved with the visuals — no hard left/right divider, no two-pane
+ * and is interleaved with the visuals �?no hard left/right divider, no two-pane
  * feel. Reduced motion shows a settled static frame.
  */
 
@@ -114,7 +114,7 @@ const HeroSection: FC = () => {
         }}
       />
 
-      {/* Full-bleed particle field — anchored toward the right on desktop. */}
+      {/* Full-bleed particle field �?anchored toward the right on desktop. */}
       <div className="pointer-events-auto absolute inset-0 hidden md:block">
         <ParticleMorph centerX={0.68} centerY={0.5} scale={1.05} />
       </div>
@@ -137,14 +137,14 @@ const HeroSection: FC = () => {
         <span className="text-accent">live</span>
       </div>
 
-      {/* Main content — text hugs the left, visuals breathe on the right */}
+      {/* Main content �?text hugs the left, visuals breathe on the right */}
       <div className="shell relative z-10 flex flex-1 items-center">
         <div className="grid w-full grid-cols-1 items-center gap-12 py-12 md:grid-cols-12">
           <div className="flex flex-col md:col-span-7">
             {/* eyebrow + status */}
             <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <motion.span
-                initial={reduce ? false : { opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="flex items-center gap-2 font-mono text-sm"
@@ -156,7 +156,7 @@ const HeroSection: FC = () => {
               </motion.span>
 
               <motion.span
-                initial={reduce ? false : { opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="flex items-center gap-2.5 font-mono text-xs tracking-wide text-foreground"
@@ -172,7 +172,7 @@ const HeroSection: FC = () => {
             </div>
 
             <motion.span
-              initial={reduce ? false : { opacity: 0 }}
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.15 }}
               className="label mb-5 block"
@@ -193,13 +193,13 @@ const HeroSection: FC = () => {
               ))}
             </h1>
 
-            {/* Mobile particle slot — only shown when full-bleed layer is hidden */}
+            {/* Mobile particle slot �?only shown when full-bleed layer is hidden */}
             <div className="relative mt-10 h-64 border border-border bg-surface/40 md:hidden">
               <ParticleMorph />
             </div>
 
             <motion.p
-              initial={reduce ? false : { opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 1.0 }}
               className="mt-10 max-w-[52ch] font-mono text-sm leading-relaxed text-muted md:text-base"
@@ -209,7 +209,7 @@ const HeroSection: FC = () => {
             </motion.p>
 
             <motion.div
-              initial={reduce ? false : { opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 1.1 }}
               className="mt-10"
@@ -235,10 +235,10 @@ const HeroSection: FC = () => {
       </div>
 
       {/* Floating HUD: auto-typing code snippet (right side, mid-low). Kept on
-          lg+ only — at md the right column is already busy with the formed
+          lg+ only �?at md the right column is already busy with the formed
           glyph and the code card crowds it. */}
       <motion.div
-        initial={reduce ? false : { opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 1.3 }}
         className="pointer-events-auto absolute bottom-24 right-10 z-10 hidden w-[280px] lg:block"
@@ -259,7 +259,7 @@ const HeroSection: FC = () => {
 
       {/* Live status bar */}
       <motion.div
-        initial={reduce ? false : { opacity: 0 }}
+        initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.4 }}
         className="relative z-10 border-t border-border bg-background/60 backdrop-blur-sm"

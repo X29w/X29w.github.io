@@ -41,6 +41,9 @@ const ParticleMorph: FC<ParticleMorphProps> = ({ centerX = 0.5, centerY = 0.5, s
     if (!ctx) return;
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // We keep the particle field alive even under reduced motion — it's the
+    // page's signature visual. The only concession is dropping cursor
+    // repulsion (the reactive jolt) and slowing the morph cycle.
 
     let accent: [number, number, number] = [95, 213, 255];
     let fg: [number, number, number] = [238, 242, 246];
@@ -192,32 +195,18 @@ const ParticleMorph: FC<ParticleMorphProps> = ({ centerX = 0.5, centerY = 0.5, s
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
     if (reduce) {
-      // settle particles onto the first word, render one static frame
-      for (let k = 0; k < 200; k++) {
-        for (const p of particles) {
-          p.x += (p.hx - p.x) * 0.3;
-          p.y += (p.hy - p.y) * 0.3;
-        }
-      }
-      ctx.clearRect(0, 0, cssW, cssH);
-      for (const p of particles) {
-        ctx.fillStyle = `rgba(${fg[0]}, ${fg[1]}, ${fg[2]}, 0.9)`;
-        ctx.fillRect(p.x, p.y, 1.6, 1.6);
-      }
-      return () => {
-        window.removeEventListener('resize', resize);
-        themeObserver.disconnect();
-      };
+      // Keep the field running but disable cursor reactivity so users with
+      // motion sensitivity don't get sudden jolts when moving the mouse.
+    } else {
+      window.addEventListener('pointermove', onPointer, { passive: true });
+      window.addEventListener('pointerleave', onLeave);
     }
 
-    window.addEventListener('pointermove', onPointer, { passive: true });
-    window.addEventListener('pointerleave', onLeave);
-
-    // Cycle through the words.
+    // Cycle through the words. Slower under reduced motion (5s vs 2.8s).
     cycle = setInterval(() => {
       wordIndex = (wordIndex + 1) % WORDS.length;
       assignTargets();
-    }, 2800);
+    }, reduce ? 5000 : 2800);
 
     const io = new IntersectionObserver(
       ([entry]) => {

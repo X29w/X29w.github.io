@@ -34,7 +34,7 @@ const BootSequence: FC = () => {
       alreadyShown = false;
     }
 
-    if (reduce || alreadyShown) {
+    if (alreadyShown) {
       setDone(true);
       return;
     }
@@ -45,12 +45,16 @@ const BootSequence: FC = () => {
       // ignore
     }
 
-    // Lock scroll during boot
+    // Lock scroll during boot.
     document.body.style.overflow = 'hidden';
+
+    // Reduced motion gets a faster, less staggered version (still plays).
+    const lineDelay = reduce ? 60 : 150;
+    const totalMs = reduce ? 900 : 1500;
 
     const lineTimers: ReturnType<typeof setTimeout>[] = [];
     LINES.forEach((_, i) => {
-      lineTimers.push(setTimeout(() => setVisibleLines(i + 1), 180 + i * 150));
+      lineTimers.push(setTimeout(() => setVisibleLines(i + 1), 100 + i * lineDelay));
     });
 
     let p = 0;
@@ -58,12 +62,12 @@ const BootSequence: FC = () => {
       p = Math.min(100, p + Math.random() * 16 + 6);
       setProgress(Math.floor(p));
       if (p >= 100) clearInterval(progressTimer);
-    }, 90);
+    }, reduce ? 50 : 90);
 
     const endTimer = setTimeout(() => {
       document.body.style.overflow = '';
       setDone(true);
-    }, 1500);
+    }, totalMs);
 
     return () => {
       lineTimers.forEach(clearTimeout);

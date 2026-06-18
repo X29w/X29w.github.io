@@ -5,39 +5,34 @@ import { useReducedMotion } from 'motion/react';
 /**
  * @description [en] Decrypt / scramble reveal. Each character settles from random
  * glyphs to the final letter, left to right. Single rAF-driven interval, cleaned
- * up on unmount. Under reduced motion it renders the final text immediately.
+ * up on unmount. Under reduced motion the effect still runs but faster, so users
+ * who set the preference still get the headline reveal — just less drawn out.
  */
 interface ScrambleTextProps {
   text: string;
   className?: string;
   /** ms before the effect starts */
   delay?: number;
-  /** how fast characters settle (lower = faster) */
-  speed?: number;
 }
 
 const GLYPHS = '!<>-_\\/[]{}=+*^?#01XAZ$%&';
 
-const ScrambleText: FC<ScrambleTextProps> = ({ text, className, delay = 0, speed = 28 }) => {
+const ScrambleText: FC<ScrambleTextProps> = ({ text, className, delay = 0 }) => {
   const reduce = useReducedMotion();
-  const [display, setDisplay] = useState(reduce ? text : '');
+  const [display, setDisplay] = useState('');
   const frameRef = useRef(0);
   const rafRef = useRef<number>(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
-    if (reduce) {
-      setDisplay(text);
-      return;
-    }
-
     const chars = text.split('');
     let settled = 0;
+    // Reveal one char per N frames; reduce mode reveals 2x faster.
+    const stride = reduce ? 1 : 2;
 
     const tick = () => {
       frameRef.current += 1;
-      // Reveal one more character every few frames.
-      if (frameRef.current % 2 === 0 && settled < chars.length) {
+      if (frameRef.current % stride === 0 && settled < chars.length) {
         settled += 1;
       }
       const out = chars
@@ -64,8 +59,7 @@ const ScrambleText: FC<ScrambleTextProps> = ({ text, className, delay = 0, speed
       cancelAnimationFrame(rafRef.current);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text, reduce]);
+  }, [text, delay, reduce]);
 
   return <span className={className}>{display || '\u00A0'}</span>;
 };

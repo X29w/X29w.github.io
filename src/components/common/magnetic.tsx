@@ -45,13 +45,14 @@ const MagneticButton: FC<MagneticProps> = ({
   const y = useSpring(my, { stiffness: 240, damping: 20, mass: 0.45 });
 
   const handleMove = (e: React.PointerEvent<HTMLButtonElement>) => {
-    if (reduce) return;
     const rect = hitboxRef.current?.getBoundingClientRect();
     if (!rect) return;
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
-    mx.set((e.clientX - cx) * strength);
-    my.set((e.clientY - cy) * strength);
+    // Reduced motion: half the pull, so the effect is present but subtle.
+    const s = reduce ? strength * 0.5 : strength;
+    mx.set((e.clientX - cx) * s);
+    my.set((e.clientY - cy) * s);
   };
 
   const reset = () => {

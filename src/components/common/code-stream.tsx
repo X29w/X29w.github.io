@@ -4,9 +4,9 @@ import { useReducedMotion } from 'motion/react';
 
 /**
  * @description [en] Tiny self-typing code snippet HUD. Cycles through a few
- * real-shaped snippets (React, NestJS, Electron) at a typewriter pace to add
- * ambient texture to the hero. Pure setInterval, cleans up on unmount, shows
- * the final snippet immediately under reduced motion.
+ * real-shaped snippets (React, NestJS, Electron, RN) at a typewriter pace.
+ * Under reduced motion the cycle still runs but the typing is faster and the
+ * hold longer, so users keep the demo with a calmer cadence.
  */
 const SNIPPETS: Array<{ tag: string; code: string }> = [
   {
@@ -36,13 +36,11 @@ const CodeStream: FC = () => {
   const [shown, setShown] = useState('');
 
   useEffect(() => {
-    if (reduce) {
-      setShown(SNIPPETS[idx].code);
-      return;
-    }
-
     let cancelled = false;
     const target = SNIPPETS[idx].code;
+    // Reduced motion: type faster + linger longer.
+    const typeMs = reduce ? 14 : TYPE_MS;
+    const holdMs = reduce ? 3200 : HOLD_MS;
     let i = 0;
 
     const type = () => {
@@ -50,12 +48,12 @@ const CodeStream: FC = () => {
       i += 1;
       setShown(target.slice(0, i));
       if (i < target.length) {
-        timer = setTimeout(type, TYPE_MS);
+        timer = setTimeout(type, typeMs);
       } else {
         timer = setTimeout(() => {
           if (cancelled) return;
           setIdx((cur) => (cur + 1) % SNIPPETS.length);
-        }, HOLD_MS);
+        }, holdMs);
       }
     };
 

@@ -16,15 +16,11 @@ interface CountUpProps {
 const CountUp: FC<CountUpProps> = ({ value, className, durationMs = 1400 }) => {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLSpanElement>(null);
-  const [display, setDisplay] = useState(reduce ? value : 0);
+  const [display, setDisplay] = useState(0);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (reduce) {
-      setDisplay(value);
-      return;
-    }
 
     let raf = 0;
     let started = false;
@@ -33,9 +29,10 @@ const CountUp: FC<CountUpProps> = ({ value, className, durationMs = 1400 }) => {
         if (!entry.isIntersecting || started) return;
         started = true;
         const start = performance.now();
+        const dur = reduce ? Math.min(durationMs, 500) : durationMs;
         const ease = (t: number) => 1 - Math.pow(1 - t, 3);
         const step = (now: number) => {
-          const progress = Math.min((now - start) / durationMs, 1);
+          const progress = Math.min((now - start) / dur, 1);
           setDisplay(Math.round(ease(progress) * value));
           if (progress < 1) raf = requestAnimationFrame(step);
         };

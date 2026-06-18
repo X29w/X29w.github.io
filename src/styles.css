@@ -204,19 +204,21 @@ body {
   background-size: 100% 1px;
 }
 
-/* ===== Reduced motion ===== */
+/* ===== Reduced motion =====
+   This page is itself a portfolio of motion craft. We deliberately keep the
+   signature animations (boot sequence, particles, scramble, headline reveal,
+   magnetic button, scroll choreography) running for users who set reduced-
+   motion, but we soften them inside each component (smaller distance, faster
+   settle, no infinite loops). Here at the global level we ONLY:
+     1. Skip smooth-scroll behaviour (jumpy navigation is fine, vertigo is not)
+     2. Disable purely cosmetic *infinite* loops (the scanline overlay, the
+        ping pulse on the status dot)
+   Component-level transitions and one-shot reveals are left alone. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .scanlines::after {
     display: none;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
   }
 }
