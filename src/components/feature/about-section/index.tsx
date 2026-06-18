@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import Reveal from '@/components/common/reveal';
 import CountUp from '@/components/common/count-up';
+import SkillMatrix from './skill-matrix';
 
 /**
  * @description [en] Profile section. Asymmetric editorial layout: sticky label
@@ -70,6 +71,17 @@ const AboutSection: FC = () => {
                   <span className="label">{stat.label}</span>
                 </Reveal>
               ))}
+            </div>
+
+            {/* Skill matrix — engineer-flavoured data-vis grid */}
+            <div className="mt-24">
+              <div className="mb-6 flex items-baseline justify-between">
+                <span className="prompt text-sm">$ ./stack --proficiency</span>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-muted">
+                  {t('about.matrixCount')}
+                </span>
+              </div>
+              <SkillMatrix />
             </div>
           </div>
         </div>

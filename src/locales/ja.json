@@ -30,7 +30,8 @@
       "projectsLabel": "作ったプロダクト",
       "stackValue": "5",
       "stackLabel": "対応プラットフォーム"
-    }
+    },
+    "matrixCount": "12 項目 · 習熟度順"
   },
   "projects": {
     "label": "選抜制作",
@@ -70,7 +71,9 @@
     "intro": "採用でも、協業でも、このページの裏側のコードが気になっただけでも、メールを開けています。本気のメッセージにはすべて返信します。",
     "emailLabel": "メール",
     "email": "hi@x29.dev",
-    "elsewhere": "その他"
+    "elsewhere": "その他",
+    "copy": "コピー",
+    "copied": "コピーしました"
   },
   "footer": {
     "builtWith": "使用技術",

@@ -30,7 +30,8 @@
       "projectsLabel": "做过的产品",
       "stackValue": "5",
       "stackLabel": "覆盖的端"
-    }
+    },
+    "matrixCount": "12 项 · 按熟练度索引"
   },
   "projects": {
     "label": "精选项目",
@@ -70,7 +71,9 @@
     "intro": "无论是招人、找合作，还是单纯好奇这个页面背后的代码，都可以给我发邮件。只要是认真的消息，我都会回。",
     "emailLabel": "邮箱",
     "email": "hi@x29.dev",
-    "elsewhere": "其他平台"
+    "elsewhere": "其他平台",
+    "copy": "复制",
+    "copied": "已复制到剪贴板"
   },
   "footer": {
     "builtWith": "技术栈",

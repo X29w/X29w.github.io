@@ -82,7 +82,7 @@ const ProjectShowcaseCard: FC<ProjectShowcaseCardProps> = ({
       onMouseLeave={handleLeave}
       style={stacked ? undefined : { rotateX, rotateY, transformPerspective: 1000 }}
       className={`group relative block overflow-hidden border border-border bg-surface text-left transition-colors duration-300 hover:border-accent/50 ${
-        stacked ? 'w-full' : 'h-[64vh] w-[78vw] shrink-0 md:w-[46vw] lg:w-[40vw]'
+        stacked ? 'w-full' : 'h-[68vh] w-[78vw] shrink-0 md:w-[64vw] lg:w-[56vw] xl:w-[48vw]'
       }`}
     >
       {/* Image */}

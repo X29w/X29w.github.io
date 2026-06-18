@@ -136,6 +136,7 @@ const ParticleMorph: FC<ParticleMorphProps> = ({ centerX = 0.5, centerY = 0.5, s
 
     const pointer = { x: -9999, y: -9999 };
     const PUSH = 90;
+    const PUSH_FORCE = reduce ? 1.4 : 2.6;
 
     const draw = () => {
       ctx.clearRect(0, 0, cssW, cssH);
@@ -152,7 +153,7 @@ const ParticleMorph: FC<ParticleMorphProps> = ({ centerX = 0.5, centerY = 0.5, s
         const mdy = p.y - pointer.y;
         const md = Math.hypot(mdx, mdy);
         if (md < PUSH && md > 0) {
-          const f = (1 - md / PUSH) * 2.6;
+          const f = (1 - md / PUSH) * PUSH_FORCE;
           p.vx += (mdx / md) * f;
           p.vy += (mdy / md) * f;
         }
@@ -162,13 +163,18 @@ const ParticleMorph: FC<ParticleMorphProps> = ({ centerX = 0.5, centerY = 0.5, s
         p.x += p.vx;
         p.y += p.vy;
 
-        // brightness from velocity (energetic = accent)
+        // brightness from velocity AND proximity to pointer — particles near
+        // the cursor pop to accent so the interaction reads without adding
+        // any extra UI overlay.
         const speed = Math.min(1, (Math.abs(p.vx) + Math.abs(p.vy)) / 6);
-        const r = fg[0] + (accent[0] - fg[0]) * speed;
-        const g = fg[1] + (accent[1] - fg[1]) * speed;
-        const b = fg[2] + (accent[2] - fg[2]) * speed;
+        const proximity = md < PUSH * 1.4 ? Math.max(0, 1 - md / (PUSH * 1.4)) : 0;
+        const heat = Math.min(1, speed + proximity * 0.85);
+        const r = fg[0] + (accent[0] - fg[0]) * heat;
+        const g = fg[1] + (accent[1] - fg[1]) * heat;
+        const b = fg[2] + (accent[2] - fg[2]) * heat;
+        const size = 1.6 + proximity * 0.8;
         ctx.fillStyle = `rgba(${r | 0}, ${g | 0}, ${b | 0}, 0.9)`;
-        ctx.fillRect(p.x, p.y, 1.6, 1.6);
+        ctx.fillRect(p.x, p.y, size, size);
       }
 
       raf = requestAnimationFrame(draw);
@@ -195,8 +201,10 @@ const ParticleMorph: FC<ParticleMorphProps> = ({ centerX = 0.5, centerY = 0.5, s
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
     if (reduce) {
-      // Keep the field running but disable cursor reactivity so users with
-      // motion sensitivity don't get sudden jolts when moving the mouse.
+      // Reduced-motion mode: keep cursor reactivity (it's a core skill demo)
+      // but dampen the push force so the jolt is gentler.
+      window.addEventListener('pointermove', onPointer, { passive: true });
+      window.addEventListener('pointerleave', onLeave);
     } else {
       window.addEventListener('pointermove', onPointer, { passive: true });
       window.addEventListener('pointerleave', onLeave);

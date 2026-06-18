@@ -32,7 +32,7 @@ const NavigationBar: FC<NavigationBarProps> = ({ locale }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const activeSection = useActiveSection(sectionIds);
 
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScrolled(latest > 80);
   });
@@ -52,11 +52,6 @@ const NavigationBar: FC<NavigationBarProps> = ({ locale }) => {
           scrolled ? 'border-b border-border bg-background/80 backdrop-blur-md' : 'border-b border-transparent'
         }`}
       >
-        <motion.div
-          className="absolute inset-x-0 top-0 h-px origin-left bg-accent"
-          style={{ scaleX: scrollYProgress }}
-        />
-
         <nav className="shell flex h-16 items-center justify-between md:h-[72px]">
           {/* Brand */}
           <a

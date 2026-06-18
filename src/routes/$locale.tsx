@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { LOCALES, LOCALE_STORAGE_KEY } from "@/utils/config/locale-match";
 import BootSequence from "@/components/common/boot-sequence";
+import ScrollProgress from "@/components/common/scroll-progress";
 import NavigationBar from "@/components/feature/navigation-bar";
 import HeroSection from "@/components/feature/hero-section";
 import AboutSection from "@/components/feature/about-section";
@@ -41,6 +42,7 @@ function LocalePage() {
   return (
     <div className="scanlines relative overflow-x-clip">
       <BootSequence />
+      <ScrollProgress />
       <NavigationBar locale={locale} />
       <main>
         <HeroSection />

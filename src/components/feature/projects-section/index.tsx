@@ -82,7 +82,11 @@ const ProjectsSection: FC = () => {
               </span>
             </div>
 
-            <motion.div ref={trackRef} style={{ x }} className="flex items-stretch gap-8 px-[6vw]">
+            <motion.div
+              ref={trackRef}
+              style={{ x }}
+              className="flex items-stretch gap-[3vw] pl-[18vw] pr-[18vw]"
+            >
               {projects.map((project, index) => (
                 <ProjectShowcaseCard
                   key={project.id}

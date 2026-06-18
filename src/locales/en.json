@@ -30,7 +30,8 @@
       "projectsLabel": "Products built",
       "stackValue": "5",
       "stackLabel": "Platforms covered"
-    }
+    },
+    "matrixCount": "12 modules · indexed by proficiency"
   },
   "projects": {
     "label": "Selected work",
@@ -70,7 +71,9 @@
     "intro": "If you are hiring, collaborating, or just curious about the code behind this page, my inbox is open. I reply to everything that is real.",
     "emailLabel": "Email",
     "email": "hi@x29.dev",
-    "elsewhere": "Elsewhere"
+    "elsewhere": "Elsewhere",
+    "copy": "Copy",
+    "copied": "Copied to clipboard"
   },
   "footer": {
     "builtWith": "Built with",

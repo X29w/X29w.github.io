@@ -30,7 +30,8 @@
       "projectsLabel": "做過的產品",
       "stackValue": "5",
       "stackLabel": "覆蓋的端"
-    }
+    },
+    "matrixCount": "12 項 · 按熟練度索引"
   },
   "projects": {
     "label": "精選專案",
@@ -70,7 +71,9 @@
     "intro": "無論是招人、找合作，還是單純好奇這個頁面背後的程式碼，都可以寄信給我。只要是認真的訊息，我都會回。",
     "emailLabel": "信箱",
     "email": "hi@x29.dev",
-    "elsewhere": "其他平台"
+    "elsewhere": "其他平台",
+    "copy": "複製",
+    "copied": "已複製到剪貼簿"
   },
   "footer": {
     "builtWith": "技術棧",
