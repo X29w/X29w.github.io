@@ -3,24 +3,20 @@ import { motion, useReducedMotion } from 'motion/react';
 import {
   IconBrandReact,
   IconBrandTypescript,
-  IconBrandNodejs,
+  IconBrandTailwind,
+  IconBrandVite,
   IconServer,
+  IconBrandNodejs,
   IconDeviceDesktop,
   IconBrandReactNative,
   IconBrandTaobao,
-  IconBrandGraphql,
-  IconBrandTailwind,
-  IconBrandVite,
-  IconDatabase,
-  IconCode,
   type Icon,
 } from '@tabler/icons-react';
 
 /**
  * @description [en] Skill matrix as an inline data-vis grid. Each cell is a
  * technology with a name, a category tag, and a proficiency bar. Animates in on
- * scroll, accent-highlights on hover. A compact, engineer-flavoured way to show
- * the stack instead of a flat list.
+ * scroll, accent-highlights on hover. Honest numbers — no inflated 95+ scores.
  */
 interface Skill {
   name: string;
@@ -30,18 +26,15 @@ interface Skill {
 }
 
 const skills: Skill[] = [
-  { name: 'React', category: 'frontend', level: 95, icon: IconBrandReact },
-  { name: 'TypeScript', category: 'frontend', level: 92, icon: IconBrandTypescript },
-  { name: 'Tailwind', category: 'frontend', level: 90, icon: IconBrandTailwind },
-  { name: 'Vite', category: 'tooling', level: 85, icon: IconBrandVite },
-  { name: 'NestJS', category: 'backend', level: 88, icon: IconServer },
-  { name: 'Node.js', category: 'backend', level: 90, icon: IconBrandNodejs },
-  { name: 'GraphQL', category: 'backend', level: 80, icon: IconBrandGraphql },
-  { name: 'PostgreSQL', category: 'backend', level: 78, icon: IconDatabase },
+  { name: 'React', category: 'frontend', level: 85, icon: IconBrandReact },
+  { name: 'TypeScript', category: 'frontend', level: 83, icon: IconBrandTypescript },
+  { name: 'Tailwind', category: 'frontend', level: 85, icon: IconBrandTailwind },
+  { name: 'Vite', category: 'tooling', level: 79, icon: IconBrandVite },
+  { name: 'NestJS', category: 'backend', level: 81, icon: IconServer },
+  { name: 'Node.js', category: 'backend', level: 80, icon: IconBrandNodejs },
   { name: 'Electron', category: 'desktop', level: 86, icon: IconDeviceDesktop },
-  { name: 'React Native', category: 'mobile', level: 84, icon: IconBrandReactNative },
-  { name: 'Taro', category: 'mobile', level: 80, icon: IconBrandTaobao },
-  { name: 'WebGL / GLSL', category: 'frontend', level: 75, icon: IconCode },
+  { name: 'React Native', category: 'mobile', level: 75, icon: IconBrandReactNative },
+  { name: 'Taro', category: 'mobile', level: 70, icon: IconBrandTaobao },
 ];
 
 const CATEGORY_LABEL: Record<Skill['category'], string> = {
@@ -56,7 +49,7 @@ const SkillMatrix: FC = () => {
   const reduce = useReducedMotion();
 
   return (
-    <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3 lg:grid-cols-3">
       {skills.map((skill, i) => {
         const Icon = skill.icon;
         return (
@@ -72,7 +65,7 @@ const SkillMatrix: FC = () => {
             }}
             className="group relative flex flex-col gap-3 bg-background p-5 transition-colors duration-200 hover:bg-surface"
           >
-            {/* Top: icon + name + category tag */}
+            {/* Top: icon + category tag */}
             <div className="flex items-start justify-between">
               <Icon
                 className="h-5 w-5 text-muted transition-colors duration-200 group-hover:text-accent"

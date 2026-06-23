@@ -35,41 +35,40 @@ export interface Capability {
 }
 
 /**
- * @description [en] Project list. Names are concrete product-style names,
- * not "Project Alpha" slop. Each carries a real preview image.
+ * @description [en] Project list — four real flagship projects spanning
+ * full-stack web, desktop, mobile, and an open-source platform. Only the
+ * open-source one carries an external href; company/closed projects show the
+ * detail modal only.
  */
 export const projects: Project[] = [
   {
-    id: "meridian",
+    id: "storeforge",
     translationIndex: 0,
     year: "2025",
-    tags: ["React", "NestJS", "PostgreSQL", "WebSocket"],
-    href: "https://github.com/X29w",
-    image: "https://picsum.photos/seed/meridian-analytics-dark/1200/900",
+    tags: ["NestJS", "Next.js", "Prisma", "Monorepo"],
+    image: "https://picsum.photos/seed/storeforge-lowcode-builder/1200/900",
   },
   {
-    id: "halcyon",
+    id: "ezremote",
     translationIndex: 1,
     year: "2024",
-    tags: ["Electron", "React", "Node.js", "SQLite"],
-    href: "https://github.com/X29w",
-    image: "https://picsum.photos/seed/halcyon-desktop-app/1200/900",
+    tags: ["Electron", "WebRTC", "node-pty", "C++ SDK"],
+    image: "https://picsum.photos/seed/ezremote-desktop-control/1200/900",
   },
   {
-    id: "fieldnote",
+    id: "rewind",
     translationIndex: 2,
     year: "2024",
-    tags: ["React Native", "Taro", "TypeScript", "GraphQL"],
-    href: "https://github.com/X29w",
-    image: "https://picsum.photos/seed/fieldnote-mobile-app/1200/900",
+    tags: ["TypeScript", "NestJS", "SDK", "PostgreSQL"],
+    href: "https://github.com/X29w/rewind",
+    image: "https://picsum.photos/seed/rewind-monitoring-replay/1200/900",
   },
   {
-    id: "cobalt",
+    id: "wanderlust",
     translationIndex: 3,
     year: "2023",
-    tags: ["WebGL", "GLSL", "Motion", "Vite"],
-    href: "https://github.com/X29w",
-    image: "https://picsum.photos/seed/cobalt-webgl-engine/1200/900",
+    tags: ["React Native", "Expo", "TypeScript"],
+    image: "https://picsum.photos/seed/wanderlust-travel-social/1200/900",
   },
 ];
 

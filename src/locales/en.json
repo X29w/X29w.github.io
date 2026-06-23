@@ -31,7 +31,7 @@
       "stackValue": "5",
       "stackLabel": "Platforms covered"
     },
-    "matrixCount": "12 modules · indexed by proficiency"
+    "matrixCount": "9 modules · indexed by proficiency"
   },
   "projects": {
     "label": "Selected work",
@@ -41,24 +41,24 @@
     "close": "Close",
     "items": [
       {
-        "name": "Meridian",
-        "summary": "Real-time analytics platform, full stack",
-        "detail": "Meridian is a real-time analytics platform I built end to end: a NestJS backend with PostgreSQL and a WebSocket layer, and a React front end with a virtualized event table that stays smooth past 50k rows. The hard part was streaming live data while keeping every interaction under 100ms, so I designed the push protocol and the front-end rendering together rather than treating them as separate problems."
+        "name": "StoreForge",
+        "summary": "Schema-driven low-code site builder",
+        "detail": "StoreForge is a low-code platform for building e-commerce storefronts, architected as a pnpm + Turborepo monorepo. A visual editor (React + dnd-kit) produces a PageSchema; a NestJS backend validates and versions it with Prisma + PostgreSQL; a Next.js storefront consumes it and renders with a shared isomorphic block library, so what you edit in the admin is exactly what ships. I designed the PageSchema contract, the editor's command-based undo/redo store, the iframe-sandboxed canvas, and the multi-tenant data isolation enforced at the ORM layer."
       },
       {
-        "name": "Halcyon",
-        "summary": "Cross-platform desktop app",
-        "detail": "Halcyon is a desktop application built on Electron with a React UI and a local Node.js service backed by SQLite. I owned the architecture: the main and renderer process split, an offline-first data layer, auto-update, and native menu integration on macOS and Windows. It runs the same codebase on both platforms without feeling like a website in a window."
+        "name": "EZ Remote",
+        "summary": "Cross-platform P2P remote desktop",
+        "detail": "A desktop client for P2P remote control, file transfer, terminal, and port forwarding, built on Electron with a three-process architecture. A C++ SDK runs in an isolated utilityProcess so a crash auto-restarts in 200ms without taking down the app; the main process talks to it over a custom RPC with timeouts. I built the session model where one P2P connection multiplexes desktop, SFTP, terminal (node-pty) and port-forward channels, an SSH2-over-SDK tunnel for file transfer, and an application-level protocol on the SDK's binary channel."
       },
       {
-        "name": "Fieldnote",
-        "summary": "Mobile app + mini-program from one codebase",
-        "detail": "Fieldnote ships to iOS, Android, and WeChat mini-program from a shared codebase, using React Native for the apps and Taro for the mini-program, with a TypeScript GraphQL backend. I built the shared component layer and the sync engine so a note edited offline on a phone reconciles cleanly when it reconnects. One team, three platforms, no copy-paste."
+        "name": "Rewind",
+        "summary": "Frontend monitoring & issue localization",
+        "detail": "Rewind is an open-source monitoring platform that makes production errors traceable: session recording and replay, error-fingerprint grouping with >95% dedup accuracy, SourceMap stack restoration, blank-screen detection, and AI-assisted context summaries. Monorepo with a zero-dependency collection SDK (gzip < 15KB), a NestJS + PostgreSQL + Redis + BullMQ backend, and a React + Vite dashboard. I work across the SDK collection engine, the data pipeline, and the localization workbench UI."
       },
       {
-        "name": "Cobalt",
-        "summary": "WebGL motion engine, open source",
-        "detail": "Cobalt is an open-source WebGL engine for scroll-driven and interactive scenes, written with raw GLSL shaders and a thin TypeScript runtime. I authored the shader library, the motion primitives, and the docs. The same graphics and particle work is what drives the interactive header on this page."
+        "name": "Wanderlust",
+        "summary": "Travel-guide social app for visitors to China",
+        "detail": "An Instagram-style mobile community where Japanese travelers share guides and itineraries for visiting China, built with React Native, Expo, and TypeScript. I owned the app development: a performant image-heavy feed with infinite scroll, the post composer and media viewer, gesture-driven navigation, and an i18n layer for Japanese and Chinese. Shipped as a cross-platform iOS/Android codebase."
       }
     ]
   },

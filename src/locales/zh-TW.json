@@ -31,7 +31,7 @@
       "stackValue": "5",
       "stackLabel": "覆蓋的端"
     },
-    "matrixCount": "12 項 · 按熟練度索引"
+    "matrixCount": "9 項 · 按熟練度索引"
   },
   "projects": {
     "label": "精選專案",
@@ -41,24 +41,24 @@
     "close": "關閉",
     "items": [
       {
-        "name": "Meridian",
-        "summary": "全端即時資料分析平台",
-        "detail": "Meridian 是一個我從頭做到尾的即時資料分析平台：後端用 NestJS 加 PostgreSQL，配一層 WebSocket，前端是 React，做了一張超過五萬列還能滑順捲動的虛擬列表。最難的地方是要一邊即時推資料，一邊把每個互動壓在 100 毫秒以內，所以我把推送協定和前端渲染放在一起設計，而不是當成兩件事。"
+        "name": "StoreForge",
+        "summary": "Schema 驅動的低代碼建站平台",
+        "detail": "StoreForge 是一個搭建電商獨立站的低代碼平台，用 pnpm + Turborepo 的 Monorepo 組織。視覺化編輯器（React + dnd-kit）產出 PageSchema，NestJS 後端用 Prisma + PostgreSQL 做校驗和版本管理，Next.js 前台消費同一份 Schema，再用一套同構區塊庫渲染——後台所見即前台所得。我設計了 PageSchema 契約、編輯器基於命令模式的撤銷/重做、iframe 沙箱畫布，以及在 ORM 層強制的多租戶資料隔離。"
       },
       {
-        "name": "Halcyon",
-        "summary": "跨平台桌面應用",
-        "detail": "Halcyon 是一個基於 Electron 的桌面應用，UI 用 React，本地跑一個 Node.js 服務，資料落在 SQLite。架構是我定的：主行程和渲染行程怎麼拆、離線優先的資料層、自動更新，以及 macOS 和 Windows 上的原生選單整合。同一套程式碼在兩個平台跑，而且不會讓人覺得是套了個殼的網頁。"
+        "name": "覓訊遠端助手",
+        "summary": "跨平台 P2P 遠端桌面",
+        "detail": "一款支援 P2P 遠端控制、檔案傳輸、終端和埠映射的桌面客戶端，基於 Electron 的三行程架構。C++ SDK 跑在隔離的 utilityProcess 裡，崩潰後 200ms 自動重啟而不拖垮主行程；主行程透過帶逾時的自研 RPC 與它通訊。我做了 Session 模型——一條 P2P 連線同時複用桌面、SFTP、終端（node-pty）和埠映射多個通道，做了走 SDK 隧道的 SSH2 檔案傳輸，以及在 SDK 二進位通道上自訂的應用層協定。"
       },
       {
-        "name": "Fieldnote",
-        "summary": "一套程式碼同時出 App 和小程式",
-        "detail": "Fieldnote 用一套程式碼同時發布到 iOS、Android 和微信小程式，App 用 React Native，小程式用 Taro，後端是 TypeScript 寫的 GraphQL。我做了共享元件層和同步引擎，讓手機上離線改的筆記在重新連網後能乾淨地合併回去。一個團隊，三個端，不靠複製貼上。"
+        "name": "Rewind",
+        "summary": "前端監控與問題定位平台",
+        "detail": "Rewind 是一個開源監控平台，讓線上錯誤可追溯：工作階段錄製回放、錯誤指紋分組（去重準確率 >95%）、SourceMap 堆疊還原、白屏偵測，以及 AI 輔助的上下文摘要。Monorepo 架構，包含一個零依賴的採集 SDK（gzip < 15KB）、NestJS + PostgreSQL + Redis + BullMQ 的後端，和 React + Vite 的看板。我在 SDK 採集引擎、資料管線和問題定位工作台之間都有投入。"
       },
       {
-        "name": "Cobalt",
-        "summary": "開源 WebGL 動效引擎",
-        "detail": "Cobalt 是一個開源的 WebGL 引擎，用來做捲動驅動和互動式場景，底層是手寫的 GLSL 著色器加一層很薄的 TypeScript 執行時。著色器庫、動效原語和文件都是我寫的。頁面頂部那個互動式粒子模組，背後用的就是同一套圖形和粒子能力。"
+        "name": "Wanderlust",
+        "summary": "面向來華旅客的旅遊攻略社群 App",
+        "detail": "一個仿 Instagram 的行動社群，日本旅客在上面分享來中國旅遊的攻略和行程，用 React Native、Expo 和 TypeScript 開發。我負責 App 開發：圖片密集的高效能資訊流加無限捲動、發文編輯器和圖片瀏覽器、手勢驅動的導航，以及中日雙語的 i18n。一套程式碼同時跑 iOS 和 Android。"
       }
     ]
   },

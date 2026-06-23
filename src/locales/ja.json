@@ -31,7 +31,7 @@
       "stackValue": "5",
       "stackLabel": "対応プラットフォーム"
     },
-    "matrixCount": "12 項目 · 習熟度順"
+    "matrixCount": "9 項目 · 習熟度順"
   },
   "projects": {
     "label": "選抜制作",
@@ -41,24 +41,24 @@
     "close": "閉じる",
     "items": [
       {
-        "name": "Meridian",
-        "summary": "フルスタックのリアルタイム分析プラットフォーム",
-        "detail": "Meridian は最初から最後まで自分で作ったリアルタイム分析プラットフォームです。バックエンドは NestJS と PostgreSQL に WebSocket 層、フロントは React で、5 万行を超えてもスムーズな仮想化テーブルを実装しました。難所はリアルタイムにデータを流しながら操作を 100 ミリ秒以内に保つこと。だからプッシュ protocol とフロントのレンダリングを別物ではなく一緒に設計しました。"
+        "name": "StoreForge",
+        "summary": "Schema 駆動のローコードサイトビルダー",
+        "detail": "StoreForge は EC ストアフロントを構築するローコードプラットフォームで、pnpm + Turborepo の Monorepo で構成しています。ビジュアルエディタ（React + dnd-kit）が PageSchema を生成し、NestJS バックエンドが Prisma + PostgreSQL で検証・バージョン管理、Next.js ストアフロントが同じ Schema を消費して同構のブロックライブラリでレンダリングします。管理画面で見たままが公開されます。私は PageSchema の契約、コマンドパターンによるエディタの undo/redo、iframe サンドボックスのキャンバス、ORM 層で強制するマルチテナント分離を設計しました。"
       },
       {
-        "name": "Halcyon",
-        "summary": "クロスプラットフォームのデスクトップアプリ",
-        "detail": "Halcyon は Electron 製のデスクトップアプリで、UI は React、ローカルで Node.js サービスを動かし、データは SQLite に保存します。アーキテクチャは私が設計しました。メイン / レンダラープロセスの分離、オフラインファーストのデータ層、自動更新、macOS と Windows のネイティブメニュー統合。同じコードベースが両プラットフォームで動き、しかも「ガワだけの Web ページ」には感じさせません。"
+        "name": "EZ Remote",
+        "summary": "クロスプラットフォーム P2P リモートデスクトップ",
+        "detail": "P2P リモート制御・ファイル転送・ターミナル・ポートフォワーディングに対応したデスクトップクライアントで、Electron の三プロセス構成です。C++ SDK は隔離した utilityProcess で動き、クラッシュしても 200ms で自動再起動し本体は落ちません。メインプロセスはタイムアウト付きの自作 RPC で通信します。1 本の P2P 接続でデスクトップ・SFTP・ターミナル（node-pty）・ポートフォワードを多重化する Session モデル、SDK トンネル経由の SSH2 ファイル転送、SDK のバイナリチャネル上のアプリ層プロトコルを実装しました。"
       },
       {
-        "name": "Fieldnote",
-        "summary": "ひとつのコードで App とミニアプリを両方",
-        "detail": "Fieldnote はひとつのコードベースから iOS、Android、WeChat ミニアプリへ配信します。App は React Native、ミニアプリは Taro、バックエンドは TypeScript の GraphQL。共有コンポーネント層と同期エンジンを作り、スマホでオフライン編集したメモが再接続時にきれいにマージされるようにしました。1 チーム、3 プラットフォーム、コピペなし。"
+        "name": "Rewind",
+        "summary": "フロントエンド監視・問題特定プラットフォーム",
+        "detail": "Rewind は本番エラーを追跡可能にするオープンソースの監視プラットフォームです。セッション録画・リプレイ、エラーフィンガープリントによるグルーピング（重複排除精度 >95%）、SourceMap スタック復元、ブランク画面検出、AI による文脈要約を備えます。Monorepo 構成で、依存ゼロの収集 SDK（gzip < 15KB）、NestJS + PostgreSQL + Redis + BullMQ のバックエンド、React + Vite のダッシュボード。SDK の収集エンジン、データパイプライン、問題特定ワークベンチに携わっています。"
       },
       {
-        "name": "Cobalt",
-        "summary": "オープンソースの WebGL モーションエンジン",
-        "detail": "Cobalt はスクロール駆動やインタラクティブなシーンのためのオープンソース WebGL エンジンで、生の GLSL シェーダーと薄い TypeScript ランタイムでできています。シェーダーライブラリ、モーションのプリミティブ、ドキュメントはすべて私が書きました。ページ上部のインタラクティブなパーティクルモジュールも、同じグラフィックスとパーティクルの技術で動いています。"
+        "name": "Wanderlust",
+        "summary": "訪中旅行者向けの旅行ガイド SNS アプリ",
+        "detail": "日本人旅行者が中国旅行のガイドや行程を共有する Instagram 風のモバイルコミュニティで、React Native・Expo・TypeScript で開発しました。アプリ開発を担当し、画像中心の高性能フィードと無限スクロール、投稿エディタとメディアビューア、ジェスチャー操作のナビゲーション、日本語と中国語の i18n を実装しました。iOS と Android を 1 つのコードベースで提供しています。"
       }
     ]
   },
