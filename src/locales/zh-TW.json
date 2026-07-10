@@ -41,14 +41,14 @@
     "close": "關閉",
     "items": [
       {
-        "name": "StoreForge",
-        "summary": "Schema 驅動的低代碼建站平台",
-        "detail": "StoreForge 是一個搭建電商獨立站的低代碼平台，用 pnpm + Turborepo 的 Monorepo 組織。視覺化編輯器（React + dnd-kit）產出 PageSchema，NestJS 後端用 Prisma + PostgreSQL 做校驗和版本管理，Next.js 前台消費同一份 Schema，再用一套同構區塊庫渲染——後台所見即前台所得。我設計了 PageSchema 契約、編輯器基於命令模式的撤銷/重做，以及在 ORM 層強制的多租戶資料隔離。"
-      },
-      {
         "name": "遠端助手",
         "summary": "跨平台 P2P 遠端桌面",
         "detail": "一款支援 P2P 遠端控制、檔案傳輸、終端和埠映射的桌面客戶端，基於 Electron 的三行程架構。C++ SDK 跑在隔離的 utilityProcess 裡，崩潰後 200ms 自動重啟而不拖垮主行程；主行程透過帶逾時的自研 RPC 與它通訊。我做了 Session 模型——一條 P2P 連線同時複用桌面、SFTP、終端（node-pty）和埠映射多個通道，做了走 SDK 隧道的 SSH2 檔案傳輸，以及在 SDK 二進位通道上自訂的應用層協定。"
+      },
+      {
+        "name": "Electron Elevolution",
+        "summary": "純函數式、外掛化 Electron 框架",
+        "detail": "Electron Elevolution 是一個專注型別安全 IPC 與零樣板開發的 Electron 框架。透過 CLI 一鍵腳手架生成完整專案，支援 React + Vite 渲染端與主行程的無縫協作。主行程一次性定義 handlers/listeners，自動生成渲染端完整型別定義，實現「Write Once, Types Everywhere」。外掛化架構支援熱重載、上下文擴充套件與生命週期鉤子，功能擴充套件無需修改核心檔案。統一視窗工廠、內建 IPC 中介軟體與 EventBus，開發時透過內建 DevTools 面板即時觀察呼叫、狀態與記憶體。"
       },
       {
         "name": "Rewind",
@@ -56,14 +56,14 @@
         "detail": "Rewind 是一個開源監控平台，讓線上錯誤可追溯：工作階段錄製回放、錯誤指紋分組（去重準確率 >95%）、SourceMap 堆疊還原、白屏偵測，以及 AI 輔助的上下文摘要。Monorepo 架構，包含一個零依賴的採集 SDK（gzip < 15KB）、NestJS + PostgreSQL + Redis + BullMQ 的後端，和 React + Vite 的看板。我在 SDK 採集引擎、資料管線和問題定位工作台之間都有投入。"
       },
       {
+        "name": "StoreForge",
+        "summary": "Schema 驅動的低代碼建站平台",
+        "detail": "StoreForge 是一個搭建電商獨立站的低代碼平台，用 pnpm + Turborepo 的 Monorepo 組織。視覺化編輯器（React + dnd-kit）產出 PageSchema，NestJS 後端用 Prisma + PostgreSQL 做校驗和版本管理，Next.js 前台消費同一份 Schema，再用一套同構區塊庫渲染——後台所見即前台所得。我設計了 PageSchema 契約、編輯器基於命令模式的撤銷/重做，以及在 ORM 層強制的多租戶資料隔離。"
+      },
+      {
         "name": "WanderTrip",
         "summary": "面向來華旅客的旅遊攻略社群 App",
         "detail": "一個仿 Instagram 的行動社群，日本旅客在上面分享來中國旅遊的攻略和行程，用 React Native、Expo 和 TypeScript 開發。我負責 App 開發：圖片密集的高效能資訊流加無限捲動、發文編輯器和圖片瀏覽器、手勢驅動的導航，以及中日雙語的 i18n。一套程式碼同時跑 iOS 和 Android。"
-      },
-      {
-        "name": "Electron Elevolution",
-        "summary": "純函數式、外掛化 Electron 框架",
-        "detail": "Electron Elevolution 是一個專注型別安全 IPC 與零樣板開發的 Electron 框架。透過 CLI 一鍵腳手架生成完整專案，支援 React + Vite 渲染端與主行程的無縫協作。主行程一次性定義 handlers/listeners，自動生成渲染端完整型別定義，實現「Write Once, Types Everywhere」。外掛化架構支援熱重載、上下文擴充套件與生命週期鉤子，功能擴充套件無需修改核心檔案。統一視窗工廠、內建 IPC 中介軟體與 EventBus，開發時透過內建 DevTools 面板即時觀察呼叫、狀態與記憶體。"
       }
     ]
   },

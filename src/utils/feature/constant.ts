@@ -69,18 +69,18 @@ export const projects: Project[] = [
     image: rewindImage,
   },
   {
-    id: "wandertrip",
-    translationIndex: 3,
-    year: "2024",
-    tags: ["React Native", "Expo", "TypeScript"],
-    image: wanderTripImage,
-  },
-  {
     id: "storeforge",
-    translationIndex: 4,
+    translationIndex: 3,
     year: "2023",
     tags: ["NestJS", "Next.js", "Prisma", "Monorepo"],
     image: storeForgeImage,
+  },
+  {
+    id: "wandertrip",
+    translationIndex: 4,
+    year: "2024",
+    tags: ["React Native", "Expo", "TypeScript"],
+    image: wanderTripImage,
   },
 ];
 
