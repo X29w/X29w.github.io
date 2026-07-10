@@ -11,6 +11,7 @@ import {
   IconBrandReactNative,
   IconBrandTaobao,
   type Icon,
+  IconBrandWechat,
 } from '@tabler/icons-react';
 
 /**
@@ -34,7 +35,7 @@ const skills: Skill[] = [
   { name: 'Node.js', category: 'backend', level: 80, icon: IconBrandNodejs },
   { name: 'Electron', category: 'desktop', level: 86, icon: IconDeviceDesktop },
   { name: 'React Native', category: 'mobile', level: 75, icon: IconBrandReactNative },
-  { name: 'Taro', category: 'mobile', level: 70, icon: IconBrandTaobao },
+  { name: 'Taro', category: 'mobile', level: 70, icon: IconBrandWechat },
 ];
 
 const CATEGORY_LABEL: Record<Skill['category'], string> = {
