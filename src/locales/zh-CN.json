@@ -21,10 +21,10 @@
   "about": {
     "label": "关于",
     "heading": "我做产品是从头管到尾的，从 API 设计一直到动画的最后一帧。",
-    "paragraphOne": "做了六年真东西：前端 React 加 TypeScript，后端 NestJS 和 Node，桌面端用 Electron，移动端和小程序用 React Native 和 Taro。一个人就能把整条流水线跑通。",
+    "paragraphOne": "做了三年真东西：前端 React 加 TypeScript，后端 NestJS 和 Node，桌面端用 Electron，移动端和小程序用 React Native 和 Taro。一个人就能把整条流水线跑通。",
     "paragraphTwo": "我把自己当成产品的主人，而不是接需求的工具人。比起闷头做一个没人要的功能，我更愿意先搞清楚为什么要做，该拍桌子的时候也会拍。性能、动效和那些细节，是我做得最好的地方。",
     "stats": {
-      "yearsValue": "6",
+      "yearsValue": "3",
       "yearsLabel": "年经验",
       "projectsValue": "30",
       "projectsLabel": "做过的产品",

@@ -21,10 +21,10 @@
   "about": {
     "label": "Profile",
     "heading": "I own products end to end, from API design to the last frame of an animation.",
-    "paragraphOne": "Six years building real products: React and TypeScript on the front, NestJS and Node on the back, Electron for desktop, React Native and Taro for mobile and mini-programs. One person, the whole pipeline.",
+    "paragraphOne": "Three years building real products: React and TypeScript on the front, NestJS and Node on the back, Electron for desktop, React Native and Taro for mobile and mini-programs. One person, the whole pipeline.",
     "paragraphTwo": "I think like an owner, not a ticket-taker. I would rather understand why something is being built and push back when it is wrong than ship a feature nobody needed. Performance, motion, and the details are where I do my best work.",
     "stats": {
-      "yearsValue": "6",
+      "yearsValue": "3",
       "yearsLabel": "Years shipping",
       "projectsValue": "30",
       "projectsLabel": "Products built",

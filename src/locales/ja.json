@@ -21,10 +21,10 @@
   "about": {
     "label": "プロフィール",
     "heading": "プロダクトは最初から最後まで自分で持つ。API 設計からアニメーションの最後の一フレームまで。",
-    "paragraphOne": "6 年間、本物のプロダクトを作ってきました。フロントは React と TypeScript、バックは NestJS と Node、デスクトップは Electron、モバイルとミニアプリは React Native と Taro。ひとりでパイプライン全体を回せます。",
+    "paragraphOne": "3 年間、本物のプロダクトを作ってきました。フロントは React と TypeScript、バックは NestJS と Node、デスクトップは Electron、モバイルとミニアプリは React Native と Taro。ひとりでパイプライン全体を回せます。",
     "paragraphTwo": "言われたチケットをこなす人ではなく、プロダクトのオーナーとして考えます。誰も必要としない機能を黙って作るより、なぜ作るのかをまず理解し、違うと思えば声を上げます。パフォーマンス、モーション、そしてディテールが一番の得意分野です。",
     "stats": {
-      "yearsValue": "6",
+      "yearsValue": "3",
       "yearsLabel": "実務年数",
       "projectsValue": "30",
       "projectsLabel": "作ったプロダクト",
