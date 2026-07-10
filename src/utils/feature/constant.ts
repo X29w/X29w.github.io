@@ -42,33 +42,32 @@ export interface Capability {
  */
 export const projects: Project[] = [
   {
-    id: "storeforge",
-    translationIndex: 0,
-    year: "2025",
-    tags: ["NestJS", "Next.js", "Prisma", "Monorepo"],
-    image: "https://picsum.photos/seed/storeforge-lowcode-builder/1200/900",
-  },
-  {
     id: "ezremote",
     translationIndex: 1,
-    year: "2024",
+    year: "2026",
     tags: ["Electron", "WebRTC", "node-pty", "C++ SDK"],
     image: "https://picsum.photos/seed/ezremote-desktop-control/1200/900",
   },
   {
     id: "rewind",
     translationIndex: 2,
-    year: "2024",
+    year: "2026",
     tags: ["TypeScript", "NestJS", "SDK", "PostgreSQL"],
-    href: "https://github.com/X29w/rewind",
     image: "https://picsum.photos/seed/rewind-monitoring-replay/1200/900",
   },
   {
-    id: "wanderlust",
+    id: "wandertrip",
     translationIndex: 3,
-    year: "2023",
+    year: "2024",
     tags: ["React Native", "Expo", "TypeScript"],
     image: "https://picsum.photos/seed/wanderlust-travel-social/1200/900",
+  },
+  {
+    id: "storeforge",
+    translationIndex: 0,
+    year: "2023",
+    tags: ["NestJS", "Next.js", "Prisma", "Monorepo"],
+    image: "https://picsum.photos/seed/storeforge-lowcode-builder/1200/900",
   },
 ];
 
@@ -82,18 +81,6 @@ export const socialLinks: SocialLink[] = [
     icon: "Github",
     ariaLabel: "Visit GitHub profile",
   },
-  {
-    platform: "LinkedIn",
-    href: "https://linkedin.com/in/x29w",
-    icon: "Linkedin",
-    ariaLabel: "Visit LinkedIn profile",
-  },
-  {
-    platform: "Email",
-    href: "mailto:hi@x29.dev",
-    icon: "Mail",
-    ariaLabel: "Send an email",
-  },
 ];
 
 /**
@@ -101,14 +88,13 @@ export const socialLinks: SocialLink[] = [
  * Full-stack + cross-platform breadth.
  */
 export const capabilities: Capability[] = [
-  { name: 'React' },
-  { name: 'TypeScript' },
-  { name: 'NestJS' },
-  { name: 'Node.js' },
-  { name: 'Electron' },
-  { name: 'React Native' },
-  { name: 'Taro' },
-  { name: 'WebGL & GLSL' },
-  { name: 'Motion' },
-  { name: 'PostgreSQL' },
+  { name: "React" },
+  { name: "TypeScript" },
+  { name: "NestJS" },
+  { name: "Node.js" },
+  { name: "Electron" },
+  { name: "React Native" },
+  { name: "Taro" },
+  { name: "Motion" },
+  { name: "PostgreSQL" },
 ];

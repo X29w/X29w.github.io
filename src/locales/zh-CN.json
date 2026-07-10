@@ -43,10 +43,10 @@
       {
         "name": "StoreForge",
         "summary": "Schema 驱动的低代码建站平台",
-        "detail": "StoreForge 是一个搭建电商独立站的低代码平台，用 pnpm + Turborepo 的 Monorepo 组织。可视化编辑器（React + dnd-kit）产出 PageSchema，NestJS 后端用 Prisma + PostgreSQL 做校验和版本管理，Next.js 前台消费同一份 Schema，再用一套同构区块库渲染——后台所见即前台所得。我设计了 PageSchema 契约、编辑器基于命令模式的撤销/重做、iframe 沙箱画布，以及在 ORM 层强制的多租户数据隔离。"
+        "detail": "StoreForge 是一个搭建电商独立站的低代码平台，用 pnpm + Turborepo 的 Monorepo 组织。可视化编辑器（React + dnd-kit）产出 PageSchema，NestJS 后端用 Prisma + PostgreSQL 做校验和版本管理，Next.js 前台消费同一份 Schema，再用一套同构区块库渲染——后台所见即前台所得。我设计了 PageSchema 契约、编辑器基于命令模式的撤销/重做，以及在 ORM 层强制的多租户数据隔离。"
       },
       {
-        "name": "觅讯远程助手",
+        "name": "远程助手",
         "summary": "跨平台 P2P 远程桌面",
         "detail": "一款支持 P2P 远程控制、文件传输、终端和端口映射的桌面客户端，基于 Electron 的三进程架构。C++ SDK 跑在隔离的 utilityProcess 里，崩溃后 200ms 自动重启而不拖垮主进程；主进程通过带超时的自研 RPC 与它通信。我做了 Session 模型——一条 P2P 连接同时复用桌面、SFTP、终端（node-pty）和端口映射多个通道，做了走 SDK 隧道的 SSH2 文件传输，以及在 SDK 二进制通道上自定义的应用层协议。"
       },
@@ -56,7 +56,7 @@
         "detail": "Rewind 是一个开源监控平台，让线上错误可追溯：会话录制回放、错误指纹分组（去重准确率 >95%）、SourceMap 堆栈还原、白屏检测，以及 AI 辅助的上下文摘要。Monorepo 架构，包含一个零依赖的采集 SDK（gzip < 15KB）、NestJS + PostgreSQL + Redis + BullMQ 的后端，和 React + Vite 的看板。我在 SDK 采集引擎、数据管线和问题定位工作台之间都有投入。"
       },
       {
-        "name": "Wanderlust",
+        "name": "WanderTrip",
         "summary": "面向来华游客的旅游攻略社区 App",
         "detail": "一个仿 Instagram 的移动社区，日本游客在上面分享来中国旅游的攻略和行程，用 React Native、Expo 和 TypeScript 开发。我负责 App 开发：图片密集的高性能信息流加无限滚动、发帖编辑器和图片浏览器、手势驱动的导航，以及中日双语的 i18n。一套代码同时跑 iOS 和 Android。"
       }

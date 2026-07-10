@@ -28,8 +28,7 @@ const iconMap: Record<string, Icon> = {
  */
 const ContactSection: FC = () => {
   const { t } = useTranslation();
-  const email = t('contact.email');
-  const social = socialLinks.filter((l) => l.platform !== 'Email');
+  const email = "1937009360@qq.com";
   const { message, show } = useToast();
 
   const handleCopy = async () => {
@@ -113,7 +112,7 @@ const ContactSection: FC = () => {
             <Reveal delay={0.16}>
               <span className="label mt-12 block">{t('contact.elsewhere')}</span>
               <ul className="mt-3 divide-y divide-border border-y border-border">
-                {social.map((link) => {
+                {socialLinks.map((link) => {
                   const Icon = iconMap[link.icon];
                   return (
                     <li key={link.platform}>
