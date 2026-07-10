@@ -1,3 +1,9 @@
+import elevolutionImage from "@/images/elevolution.png";
+import remoteControlImage from "@/images/remote-control.png";
+import storeForgeImage from "@/images/storeforge.png";
+import rewindImage from "@/images/rewind.png";
+import wanderTripImage from "@/images/wandertrip.png";
+
 /**
  * @description [en] Project data interface for the editorial work index.
  */
@@ -46,35 +52,35 @@ export const projects: Project[] = [
     translationIndex: 0,
     year: "2026",
     tags: ["Electron", "WebRTC", "node-pty", "C++ SDK"],
-    image: "https://picsum.photos/seed/ezremote-desktop-control/1200/900",
+    image: remoteControlImage,
   },
   {
     id: "elevolution",
     translationIndex: 1,
     year: "2026",
     tags: ["Electron", "React", "Vite", "TypeScript", "Turborepo"],
-    image: "https://picsum.photos/seed/electron-elevolution-framework/1200/900",
+    image: elevolutionImage,
   },
   {
     id: "rewind",
     translationIndex: 2,
     year: "2026",
     tags: ["TypeScript", "NestJS", "SDK", "PostgreSQL"],
-    image: "https://picsum.photos/seed/rewind-monitoring-replay/1200/900",
+    image: rewindImage,
   },
   {
     id: "wandertrip",
     translationIndex: 3,
     year: "2024",
     tags: ["React Native", "Expo", "TypeScript"],
-    image: "https://picsum.photos/seed/wanderlust-travel-social/1200/900",
+    image: wanderTripImage,
   },
   {
     id: "storeforge",
     translationIndex: 4,
     year: "2023",
     tags: ["NestJS", "Next.js", "Prisma", "Monorepo"],
-    image: "https://picsum.photos/seed/storeforge-lowcode-builder/1200/900",
+    image: storeForgeImage,
   },
 ];
 
