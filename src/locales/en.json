@@ -59,6 +59,11 @@
         "name": "WanderTrip",
         "summary": "Travel-guide social app for visitors to China",
         "detail": "An Instagram-style mobile community where Japanese travelers share guides and itineraries for visiting China, built with React Native, Expo, and TypeScript. I owned the app development: a performant image-heavy feed with infinite scroll, the post composer and media viewer, gesture-driven navigation, and an i18n layer for Japanese and Chinese. Shipped as a cross-platform iOS/Android codebase."
+      },
+      {
+        "name": "Electron Elevolution",
+        "summary": "Purely functional, pluggable Electron framework",
+        "detail": "Electron Elevolution is an Electron framework focused on type-safe IPC and zero-boilerplate development. A CLI scaffold generates complete projects with one command, supporting seamless collaboration between React + Vite renderer and main process. Handlers/listeners are defined once in the main process, automatically generating complete type definitions for the renderer—achieving \"Write Once, Types Everywhere\". The plugin-based architecture supports hot reloading, context extension, and lifecycle hooks, enabling feature expansion without modifying core files. It includes unified window factory, built-in IPC middleware and EventBus, and a DevTools panel for real-time observation of calls, state, and memory during development."
       }
     ]
   },

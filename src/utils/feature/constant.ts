@@ -43,10 +43,17 @@ export interface Capability {
 export const projects: Project[] = [
   {
     id: "ezremote",
-    translationIndex: 1,
+    translationIndex: 0,
     year: "2026",
     tags: ["Electron", "WebRTC", "node-pty", "C++ SDK"],
     image: "https://picsum.photos/seed/ezremote-desktop-control/1200/900",
+  },
+  {
+    id: "elevolution",
+    translationIndex: 1,
+    year: "2026",
+    tags: ["Electron", "React", "Vite", "TypeScript", "Turborepo"],
+    image: "https://picsum.photos/seed/electron-elevolution-framework/1200/900",
   },
   {
     id: "rewind",
@@ -64,7 +71,7 @@ export const projects: Project[] = [
   },
   {
     id: "storeforge",
-    translationIndex: 0,
+    translationIndex: 4,
     year: "2023",
     tags: ["NestJS", "Next.js", "Prisma", "Monorepo"],
     image: "https://picsum.photos/seed/storeforge-lowcode-builder/1200/900",

@@ -59,6 +59,11 @@
         "name": "WanderTrip",
         "summary": "面向来华游客的旅游攻略社区 App",
         "detail": "一个仿 Instagram 的移动社区，日本游客在上面分享来中国旅游的攻略和行程，用 React Native、Expo 和 TypeScript 开发。我负责 App 开发：图片密集的高性能信息流加无限滚动、发帖编辑器和图片浏览器、手势驱动的导航，以及中日双语的 i18n。一套代码同时跑 iOS 和 Android。"
+      },
+      {
+        "name": "Electron Elevolution",
+        "summary": "纯函数式、插件化 Electron 框架",
+        "detail": "Electron Elevolution 是一个专注类型安全 IPC 与零样板开发的 Electron 框架。通过 CLI 一键脚手架生成完整项目，支持 React + Vite 渲染端与主进程的无缝协作。主进程一次性定义 handlers/listeners，自动生成渲染端完整类型定义，实现「Write Once, Types Everywhere」。插件化架构支持热重载、上下文扩展与生命周期钩子，功能扩展无需修改核心文件。统一窗口工厂、内置 IPC 中间件与 EventBus，开发时通过内置 DevTools 面板实时观察调用、状态与内存。"
       }
     ]
   },
